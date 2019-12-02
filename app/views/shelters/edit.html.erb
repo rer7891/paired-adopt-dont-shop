@@ -1,0 +1,17 @@
+<h1> Edit Shelter Listing </h1>
+<div class='center-form'>
+<h2> Edit the following information: </h2>
+<%= form_tag "/shelters/#{@shelter.id}", method: 'patch' do %>
+  <%= label_tag 'Name: ' %>
+  <%= text_field_tag :name, @shelter.name %><br/>
+  <%= label_tag 'Address: ' %>
+  <%= text_field_tag :address, @shelter.address %><br/>
+  <%= label_tag 'City: ' %>
+  <%= text_field_tag :city, @shelter.city %><br/>
+  <%= label_tag 'State: ' %>
+  <%= text_field_tag :state, @shelter.state %><br/>
+  <%= label_tag "Zip Code: " %>
+  <%= text_field_tag :zip_code, @shelter.zip_code %><br/>
+<%= submit_tag 'Submit' %>
+<% end %>
+</div>

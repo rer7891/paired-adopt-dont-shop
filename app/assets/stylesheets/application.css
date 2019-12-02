@@ -1,0 +1,122 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  margin: 0;
+  font-size: 1em;
+  background-color: #3AAFA9;
+}
+
+h1 {
+  text-align: center;
+  font-size: 3em;
+  color: #ccc;
+  padding: 40px 15px 15px 10px;
+}
+
+h2 {
+  text-align: center;
+  font-size: 1.5em;
+  color: #ccc;
+}
+
+h3 {
+  text-align: center;
+  font-size: 1em;
+  color: #ccc;
+  padding: 5px;
+}
+
+a {
+  color: #17252A;
+  padding: 1em;
+ }
+
+nav {
+ margin: 30px;
+ margin-bottom: 15px;
+}
+
+ul {
+ list-style-type: none;
+}
+
+li {
+ height: 25px;
+ float: left;
+ margin-right: 0px;
+ border-right: 1px solid #aaa;
+ padding: 0 20px;
+}
+
+li:last-child {
+ border-right: none;
+}
+
+li a {
+ text-decoration: none;
+ color: #ccc;
+ font: 25px;
+ text-transform: uppercase;
+ -webkit-transition: all 0.5s ease;
+}
+
+li a:hover {
+ color: #666;
+}
+
+li.active a {
+ font-weight: bold;
+ color: #333;
+}
+
+.center-div {
+  margin: 40px auto;
+  width: 500px;
+  border: 2px solid #000;
+  border-radius: 30px;
+}
+
+.center-form {
+  margin: 30px auto;
+  width: 500px;
+}
+
+
+.button-right {
+  float: right;
+}
+
+.button-left {
+  float: left;
+}
+
+.center-div p {
+  margin: 20px auto;
+  width: 500px;
+  text-align: center;
+}
+
+.center-div img {
+  margin: 20px auto;
+  width: 500px;
+  display: block;
+}

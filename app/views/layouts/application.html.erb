@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Turing Module 2 Solo Project: Adopt Don't Shop</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Lato:300,400&display=swap" rel="stylesheet">
+
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><%= link_to "All Pets", "/pets" %></li>
+        <li><%= link_to "All Shelters", "/shelters" %></li>
+      </ul>
+    </nav>
+    <%= yield %>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+<h1><%= @shelter.name %></h1>
+<h2><%= link_to 'Adoptable Pets', "/shelters/#{@shelter.id}/pets"%></h2>
+<div class='center-div'>
+<p>Address: <%= @shelter.address %></p>
+<p>City: <%= @shelter.city %></p>
+<p>State: <%= @shelter.state %></p>
+<p>Zip Code: <%= @shelter.zip_code %></p>
+<%= link_to 'Update This Shelter', "/shelters/#{@shelter.id}/edit", class: 'button-left'%>
+<%= link_to 'Delete This Shelter', "/shelters/#{@shelter.id}", method: :delete, class: 'button-right' %>
+</div>

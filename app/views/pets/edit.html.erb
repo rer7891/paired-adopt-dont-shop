@@ -1,0 +1,19 @@
+<h1> Edit Pet Listing </h1>
+<h2><%= link_to 'Delete Pet', "/pets/#{@pet.id}", method: :delete %></h2>
+
+<div class='center-form'>
+<h2> Edit the following information: </h2>
+<%= form_tag "/pets/#{@pet.id}", method: 'patch' do %>
+  <%= label_tag 'New Image URL: ' %>
+  <%= text_field_tag :image_url, @pet.image_url %><br/>
+  <%= label_tag 'Name: ' %>
+  <%= text_field_tag :name, @pet.name %><br/>
+  <%= label_tag 'Description: '%>
+  <%= text_area_tag :description, @pet.description, size: '30x3' %><br/>
+  <%= label_tag 'Approximate Age: '%>
+  <%= text_field_tag :approximate_age, @pet.approximate_age  %><br/>
+  <%= label_tag 'Gender (M or F): ' %>
+  <%= text_field_tag :sex, @pet.sex %><br/>
+<%= submit_tag 'Submit' %>
+<% end %>
+</div>

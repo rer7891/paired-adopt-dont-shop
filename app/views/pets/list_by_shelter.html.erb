@@ -1,0 +1,19 @@
+<h1>Pets At <%=@shelter.name %></h1>
+<h2><%= link_to 'Add New Pet for Adoption', "/shelters/#{@shelter.id}/pets/new" %></h2>
+<h3> Number of Pets Available: <%= @shelter.count_pets %></h3>
+<% @pets.each do |pet| %>
+  <div class='center-div'>
+  <%= image_tag("#{pet.image_url}", {:style => "width:250px;"}) %>
+  <h2> <%= pet.name %></h2>
+  <p>Description: <%= pet.description%></p>
+  <p>Approximate Age: <%= pet.approximate_age %></p>
+  <p>Gender: <%= pet.sex %></p>
+  <% if pet.is_adoptable %>
+   <p>Status: Adoptable</p>
+  <% else %>
+   <p>Status: Adoption Pending</p>
+  <% end %>
+  <p><%= link_to 'Edit Pet', "/pets/#{pet.id}/edit" %></p>
+  <p><%= link_to 'Delete Pet', "/pets/#{pet.id}", method: :delete%></p>
+</div>
+<% end %>

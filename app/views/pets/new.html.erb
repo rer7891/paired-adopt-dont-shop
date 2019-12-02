@@ -1,0 +1,15 @@
+<h1> Add a New Pet for Adoption </h1>
+<%= form_tag "/shelters/#{@shelter.id}/pets", class:'center-form' do %>
+  <%= label_tag 'Add Image URL: ' %>
+  <%= text_field_tag :image_url %><br/>
+  <%= label_tag 'Name: ' %>
+  <%= text_field_tag :name %><br/>
+  <%= label_tag 'Description: ' %>
+  <%= text_area_tag :description, nil, size: '30x3' %><br/>
+  <%= label_tag 'Approximate Age: ' %>
+  <%= text_field_tag :approximate_age %><br/>
+  <%= label_tag 'Gender (M or F): ' %>
+  <%= text_field_tag :sex %><br/>
+<p><%= submit_tag 'Submit' %></p>
+</div>
+<% end %>

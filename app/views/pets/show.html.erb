@@ -1,0 +1,16 @@
+<div class='center-div'>
+<%= image_tag("#{@pet.image_url}", {:style => "width:300px;"}) %>
+<h2><%= @pet.name %></h2>
+<p>Description: <%= @pet.description %></p>
+<p>Approximate Age: <%= @pet.approximate_age%></p>
+<p>Gender: <%= @pet.sex %></p>
+<% if @pet.is_adoptable %>
+ <p>Status: Adoptable</p>
+<% else %>
+ <p>Status: Adoption Pending</p>
+<% end %>
+
+<p><%= link_to 'Edit Pet', "/pets/#{@pet.id}/edit" %></p>
+
+<p><%= link_to 'Delete Pet', "/pets/#{@pet.id}", method: :delete %></p>
+</div>
