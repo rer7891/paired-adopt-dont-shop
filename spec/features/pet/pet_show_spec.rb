@@ -15,8 +15,16 @@ RSpec.describe 'Pets show page', type: :feature do
                          description: 'I am a neutered male, white Terrier Mix who loves to play fetch.',
                          approximate_age: 4,
                          sex: 'M',
-                         favorite_status: true
+                         favorite_status: false
                          )
+
+     @dog_2 = @shelter_1.pets.create!(image_url: '/',
+                        name: 'Kuma',
+                        description: 'I am an energetic, black Shiba Inu.',
+                        approximate_age: 1,
+                        sex: 'F',
+                        favorite_status: false
+                        )
       end
 
     it 'can see links to the pets and shelters index pages' do
@@ -56,8 +64,19 @@ RSpec.describe 'Pets show page', type: :feature do
 
      expect(page).to have_link('Favorite This Pet')
      click_on ('Favorite This Pet')
+
      expect(current_path).to eq "/pets/#{@dog_1.id}"
-     expect(flash[:success]). to eq 'You'
+
+     expect(page). to have_content("My Favorites (1)")
+
+     visit "/pets/#{@dog_2.id}"
+
+     expect(page).to have_link('Favorite This Pet')
+     click_on ('Favorite This Pet')
+
+     expect(page). to have_content("My Favorites (2)")
+
+
   end
  end
 end
