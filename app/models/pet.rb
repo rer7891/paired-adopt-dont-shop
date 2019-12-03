@@ -14,5 +14,6 @@ class Pet < ApplicationRecord
   end
 
   def count_favorites
-  end 
+    Pet.where("favorite_status = true").count
+  end
 end
