@@ -1,6 +1,6 @@
 class Shelter < ApplicationRecord
   has_many :pets
-  has_many :reviews
+  has_many :reviews, :dependent => :delete_all
 
   validates_associated :pets
   validates_associated :reviews
