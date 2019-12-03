@@ -1,1 +1,20 @@
-<%= form_tag "/shelters/#{params[:id]/reviews" do %>
+<% flash.each do |type, msg| %>
+    <%= msg %>
+<% end %>
+
+<h1> Add a New Review </h1>
+<div class='center-form'>
+<h2> Enter the following information: </h2>
+  <%= form_tag "/shelters/#{params[:id]}/reviews" do %>
+    <%= label_tag :title %>
+    <%= text_field_tag :title %> </br>
+    <%= label_tag :rating %>
+    <%= select_tag :rating,(raw('<option value = 1 > 1 </option>, <option value = 2 > 2 </option>,
+                                <option value = 3 > 3 </option>, <option value = 4 > 4 </option>, <option value = 5 > 5 </option>' )) %> </br>
+    <%= label_tag :content %>
+    <%= text_field_tag :content %> </br>
+    <%= label_tag :image_url %>
+    <%= text_field_tag :image_url %> </br>
+    <%= submit_tag "Create A New Review" %> </br>
+  <% end %>
+</div>
