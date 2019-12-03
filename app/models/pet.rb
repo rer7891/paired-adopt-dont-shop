@@ -12,4 +12,7 @@ class Pet < ApplicationRecord
   def upcase_field
     self.sex.upcase!
   end
+
+  def count_favorites
+  end 
 end

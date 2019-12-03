@@ -15,7 +15,7 @@ RSpec.describe 'Pets show page', type: :feature do
                          description: 'I am a neutered male, white Terrier Mix who loves to play fetch.',
                          approximate_age: 4,
                          sex: 'M',
-                         favorite_status: false
+                         favorite_status: true
                          )
       end
 
