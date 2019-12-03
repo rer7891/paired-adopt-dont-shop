@@ -1,5 +1,5 @@
 class Pet < ApplicationRecord
-  belongs_to:shelter
+  belongs_to :shelter
   validates :shelter, presence: true
   validates :image_url, presence: true
   validates :name, presence: true, format: { with: /\A[a-zA-Z ]+\z/ }
