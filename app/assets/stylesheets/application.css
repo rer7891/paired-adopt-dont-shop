@@ -113,6 +113,8 @@ li.active a {
   margin: 20px auto;
   width: 500px;
   text-align: center;
+  word-wrap: break-word;
+  text-indent: 5px;
 }
 
 .center-div img {
