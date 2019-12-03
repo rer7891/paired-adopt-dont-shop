@@ -10,14 +10,18 @@
 </div>
 </br>
 <section class= 'center-div'>
-  <% @reviews.each do |review| %>
-    <section id=reviews-<%"#{review.id}"%>
+  <% @shelter.reviews.each do |review| %>
+    <section id=reviews<%"#{review.id}"%>
     </br>
       <p> Review #<%=review.id%> </p>
       <p><%= review.title%> </p>
       <p><%= review.rating %> stars</p>
       <p> <b> Review: </b> <%= review.content %></p>
-      <p><%= review.image_url%> </p>
+        <% if "#{review.image_url}".present? %>
+              <p>  <%= image_tag("#{review.image_url}", {:style => "width:80%; height: 175px;"}) %> </p>
+        <% else %>
+              <p>  </p>
+        <% end %>
     </section>
  <%end%>
 </section>
