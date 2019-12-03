@@ -8,11 +8,16 @@
 <%= link_to 'Update This Shelter', "/shelters/#{@shelter.id}/edit", class: 'button-left'%>
 <%= link_to 'Delete This Shelter', "/shelters/#{@shelter.id}", method: :delete, class: 'button-right' %>
 </div>
+
+<% flash.each do |type, msg| %>
+  <h3>  <%= msg %> </h3>
+<% end %>
 </br>
+
 <section class= 'center-div'>
   <% @shelter.reviews.each do |review| %>
     <section id=reviews<%"#{review.id}"%>
-    </br>
+</br>
       <p> Review #<%=review.id%> </p>
       <p><%= review.title%> </p>
       <p><%= review.rating %> stars</p>
@@ -25,4 +30,4 @@
     </section>
  <%end%>
 </section>
-<h2> <%= link_to 'Create A New Review', '/reviews/new'%></h2>
+<h2> <%= link_to 'Create A New Review', "/shelters/#{@shelter.id}/reviews/new"%></h2>
