@@ -10,9 +10,9 @@
  <p>Status: Adoption Pending</p>
 <% end %>>
 
-<p><%= link_to 'Edit Pet', "/pets/#{@pet.id}/edit" %></p>
+<p><%= link_to 'Edit Pet', "/pets/#{@pet.id}/edit" %><br>
 
-<p><%= link_to 'Delete Pet', "/pets/#{@pet.id}", method: :delete %></p>
+<%= link_to 'Delete Pet', "/pets/#{@pet.id}", method: :delete %><br>
 
-<p><%= link_to 'Favorite This Pet', "/pets/#{@pet.id}", method: post %> </p>
-</div> 
+<%= link_to 'Favorite This Pet', "/pets/#{@pet.id}/favorite", method: :patch %><br>
+</div>

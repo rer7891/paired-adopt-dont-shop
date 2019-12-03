@@ -18,6 +18,9 @@
         <li><%= link_to "My Favorites", "/" %></li>
       </ul>
     </nav>
+    <% flash.each do |type, message| %>
+     <div class="alert alert-<%= type %>"><%= message %></div>
+   <% end %>
     <%= yield %>
   </body>
 </html>

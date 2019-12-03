@@ -37,6 +37,17 @@ class PetsController < ApplicationController
       redirect_to '/pets'
   end
 
+  def set_favorite_status
+    pet = Pet.find(params[:id])
+    if pet.favorite_status == false
+      pet.update(favorite_status: true)
+      # flash.now[:success] = "You added a new pet to your favorites!"
+    else
+      flash.now[:error] = "You have already favorited this pet!"
+    end
+    redirect_to "/pets/#{pet.id}"
+  end
+
   private
     def pet_params
       params.permit(:image_url, :name, :approximate_age, :description, :sex)

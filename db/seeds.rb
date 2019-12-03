@@ -25,16 +25,19 @@ shelter_1.pets.create!(image_url: 'https://media.wired.com/photos/5dd593a829b9c4
                        description: 'I am an adorable one strong with the Force. Enjoys eating frogs.',
                        approximate_age: 50,
                        sex: 'M',
+                
                        )
 shelter_1.pets.create!(image_url: 'https://cdn3.movieweb.com/i/article/HIxWc8aYAdMq5IYlYo0YPjfnqpUYfh/798:75/Gremlins-Movie-1984-Gizmo-Original-Villain.jpg',
                         name: 'Gizmo',
                         description: 'I am a very fluffy, kind Mogwai. Do not place near water.',
                         approximate_age: 2,
                         sex: 'M',
+
                       )
 shelter_2.pets.create!(image_url: 'https://img1.looper.com/img/gallery/the-untold-truth-of-baby-groot/-1495639424.jpg',
                         name: 'Grooty',
                         description: 'I am a lovable, high-energy Flora Colossus. My ideal home will dedicate more time to help me learn how to press buttons.',
                         approximate_age: 1,
                         sex: 'F',
+
                         )

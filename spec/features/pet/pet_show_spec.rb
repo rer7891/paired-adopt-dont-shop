@@ -15,6 +15,7 @@ RSpec.describe 'Pets show page', type: :feature do
                          description: 'I am a neutered male, white Terrier Mix who loves to play fetch.',
                          approximate_age: 4,
                          sex: 'M',
+                         favorite_status: false
                          )
       end
 
@@ -53,11 +54,10 @@ RSpec.describe 'Pets show page', type: :feature do
 
      visit "pets/#{@dog_1.id}"
 
-     expect(page).to have_link('Favorite this Pet')
-     assert_equal "pets/#{@dog_1.id}", current_path
-     flash[:success].should =~ /you added a new pet to your favorites!/
-
-
+     expect(page).to have_link('Favorite This Pet')
+     click_on ('Favorite This Pet')
+     expect(current_path).to eq "/pets/#{@dog_1.id}"
+     expect(flash[:success]). to eq 'You'
   end
  end
 end
