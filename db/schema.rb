@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191126234951) do
+ActiveRecord::Schema.define(version: 20191203020325) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20191126234951) do
     t.boolean "is_adoptable", default: true, null: false
     t.integer "shelter_id"
     t.string "description", null: false
-  end
+  end\
 
   create_table "shelters", force: :cascade do |t|
     t.string "name", null: false

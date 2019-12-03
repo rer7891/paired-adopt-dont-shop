@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+#add destroy methods
+
 shelter_1 = Shelter.create!(name: 'Denver Pet Shelter',
                            address: '123 Colfax Ave',
                            city: 'Denver',
