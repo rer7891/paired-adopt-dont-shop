@@ -16,19 +16,18 @@ RSpec.describe "As a visitor", type: :feature do
         expect(current_path).to eql("/shelters/#{@shelter_1.id}/reviews/new")
 
         fill_in "Title",     with: "Best New Shelter"
-        fill_in "Rating",    with: 5
+        select('4', :from => 'Rating')
         fill_in "Content",   with: "A brand new facility that is first rate. Their staff is friendly and helpful."
-        fill_in "Image_Url", with: "https://i.etsystatic.com/21148196/r/il/fcb7b9/2150670743/il_1588xN.2150670743_35qp.jpg"
-        click_on "Create Review"
+        fill_in "image_url", with: "https://picsum.photos/id/200/1920/1280"
+        click_on "Create A New Review"
 
         expect(current_path).to eql("/shelters/#{@shelter_1.id}")
         review = Review.last
-        expect(review.title).to eql(Best New Shelter)
+        expect(review.title).to eql("Best New Shelter")
         expect(page).to have_content(review.title)
         expect(page).to have_content(review.rating)
         expect(page).to have_content(review.content)
-        expect(page).to have_xpath("img[scr='https://i.etsystatic.com/21148196/r/il/fcb7b9/2150670743/il_1588xN.2150670743_35qp.jpg']")
-      end
+      end 
     end
   end
 end
