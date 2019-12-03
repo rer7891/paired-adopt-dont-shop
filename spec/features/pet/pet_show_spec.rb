@@ -48,5 +48,18 @@ RSpec.describe 'Pets show page', type: :feature do
       expect(page).to have_content("Adoptable")
 
     end
+
+    it 'can select a favorite pet' do
+
+     visit "pets/#{@dog_1.id}"
+
+     within 'nav' do
+     expect(page).to have_link('Favorite this Pet')
+     assert_equal "pets/#{@dog_1.id}", current_path
+     flash[:success].should =~ /you added a new pet to your favorites!/
+
+
+      end
+    end
   end
 end
