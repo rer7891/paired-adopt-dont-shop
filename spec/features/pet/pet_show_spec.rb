@@ -63,24 +63,39 @@ RSpec.describe 'Pets show page', type: :feature do
      visit "pets/#{@dog_1.id}"
 
      expect(page).to have_link('Favorite This Pet')
-     click_on ('Favorite This Pet')
+     click_on 'Favorite This Pet'
 
      expect(current_path).to eq "/pets/#{@dog_1.id}"
 
-     expect(page). to have_content("My Favorites (1)")
+     expect(page). to have_content("Favorites:#{@favorite_count}")
      expect(page). to have_content("You added a new pet to your favorites!")
 
      visit "/pets/#{@dog_2.id}"
-
      expect(page).to have_link('Favorite This Pet')
-     click_on ('Favorite This Pet')
+     click_on 'Favorite This Pet'
+save_and_open_page
+     expect(page). to have_content("Favorites: #{@favorite_count}")
 
-     expect(page). to have_content("My Favorites (2)")
+     # click_on 'Favorite This Pet'
+     # expect(page). to have_content("You have already favorited this pet!")
+  end
 
-     click_on ('Favorite This Pet')
-     expect(page). to have_content("You have already favorited this pet!")
+  describe "As a visitor after I've favorited a pet" do
+    xit "when I visit that pet's show page I no longer see a link to favorite pet" do
+      dog_1 = @shelter_1.pets.create!(image_url: '/',
+                         name: 'Kuma',
+                         description: 'I am an energetic, black Shiba Inu.',
+                         approximate_age: 1,
+                         sex: 'F',
+                         favorite_status: true)
 
+      visit "/pets/#{dog_1.id}"
 
+      expect(page).to have_content(dog_1.name)
+      expect(page).to_not have_link('Favorite This Pet')
+
+      expect(page).to have_link('Delete This Pet From Favorites')
+    end
   end
  end
 end
