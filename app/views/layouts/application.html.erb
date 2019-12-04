@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Turing Module 2 Solo Project: Adopt Don't Shop</title>
+    <title>Paired Project: Adopt Don't Shop Part II</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
@@ -15,6 +15,7 @@
       <ul>
         <li><%= link_to "All Pets", "/pets" %></li>
         <li><%= link_to "All Shelters", "/shelters" %></li>
+        <li><%= link_to "My Favorites (#{Pet.where("favorite_status = true").count})", "/favorites" %></li>
       </ul>
     </nav>
     <%= yield %>
