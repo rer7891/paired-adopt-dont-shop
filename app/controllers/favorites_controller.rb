@@ -1,16 +1,18 @@
 class FavoritesController < ApplicationController
   def index
-    @favorite_pets = Pet.where("favorite_status = true")
+    ids = cookies[:favorites].split(",").uniq
+    @favorite_pets = Pet.find(ids)
+    @favorite_count = @favorite_pets.length
   end
 
   def update
-   @pet = Pet.find(params[:id])
-   if @pet.favorite_status == false
-     @pet.update(favorite_status: true)
-     flash[:success] = "You added a new pet to your favorites!"
-   else
-     flash[:error] = "You have already favorited this pet!"
-   end
-   redirect_to "/pets/#{@pet.id}"
+   pet_id = params[:id]
+   cookies[:favorites] += "#{pet_id},"
+    flash[:success] = "You added a new pet to your favorites!"
+   # else
+   #   flash[:error] = "You have already favorited this pet!"
+   # end
+
+   redirect_to "/pets/#{pet_id}"
   end
 end
