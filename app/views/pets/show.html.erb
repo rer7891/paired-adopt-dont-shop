@@ -1,3 +1,8 @@
+<div>
+  <% flash.each do |type, message| %>
+       <p><%= message %></p>
+     <% end %>
+</div>
 <div class='center-div'>
 <%= image_tag("#{@pet.image_url}", {:style => "width:300px;"}) %>
 <h2><%= @pet.name %></h2>
@@ -8,11 +13,11 @@
  <p>Status: Adoptable</p>
 <% else %>
  <p>Status: Adoption Pending</p>
-<% end %>>
+<% end %>
 
 <p><%= link_to 'Edit Pet', "/pets/#{@pet.id}/edit" %><br>
 
 <%= link_to 'Delete Pet', "/pets/#{@pet.id}", method: :delete %><br>
 
-<%= link_to 'Favorite This Pet', "/favorite", method: :patch %><br>
+<%= link_to 'Favorite This Pet', "/favorite/#{@pet.id}", method: :patch %><br>
 </div>
