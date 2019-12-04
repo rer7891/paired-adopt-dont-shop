@@ -1,6 +1,6 @@
 class PetsController < ApplicationController
   layout 'application'
-  
+
   def index
     @pets = Pet.all
   end
