@@ -24,10 +24,8 @@
       <p><%= review.rating %> stars</p>
       <p> <b> Review: </b> <%= review.content %></p>
         <% if "#{review.image_url}".present? %>
-              <p>  <%= image_tag("#{review.image_url}", {:style => "width:80%; height: 175px;"}) %> </p>
-        <% else %>
-              <p>  </p>
-        <% end %>
+            <p>  <%= image_tag("#{review.image_url}", {:style => "width:80%; height: 175px;"}) %> </p>
+        <%end%>
     </section>
  <%end%>
 </section>
