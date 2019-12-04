@@ -68,6 +68,7 @@ RSpec.describe 'Pets show page', type: :feature do
      expect(current_path).to eq "/pets/#{@dog_1.id}"
 
      expect(page). to have_content("My Favorites (1)")
+     expect(page). to have_content("You added a new pet to your favorites!")
 
      visit "/pets/#{@dog_2.id}"
 
@@ -75,6 +76,9 @@ RSpec.describe 'Pets show page', type: :feature do
      click_on ('Favorite This Pet')
 
      expect(page). to have_content("My Favorites (2)")
+
+     click_on ('Favorite This Pet')
+     expect(page). to have_content("You have already favorited this pet!")
 
 
   end

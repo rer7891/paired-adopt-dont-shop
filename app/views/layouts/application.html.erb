@@ -16,7 +16,6 @@
         <li><%= link_to "All Pets", "/pets" %></li>
         <li><%= link_to "All Shelters", "/shelters" %></li>
         <li><%= link_to "My Favorites (#{@pet.count_favorites})", "/" %></li>
-        <% binding.pry %>
       </ul>
     </nav>
     <%= yield %>
