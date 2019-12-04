@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe 'As a visitor', type: :feature do
-  describe 'After visiting a pets show page and clicking on delete that pet' do
+RSpec.describe 'Navigation bar', type: :feature do
+  describe 'As a visitor' do
     before :each do
 
       @shelter_1 = Shelter.create!(name: 'Denver Animal Shelter',
@@ -15,23 +15,17 @@ RSpec.describe 'As a visitor', type: :feature do
                          description: 'I am a neutered male, white Terrier Mix who loves to play fetch.',
                          approximate_age: 4,
                          sex: 'M',
+                         favorite_status: true
                          )
+      end
+    it 'can see a favorites link' do
+      visit '/'
+      within 'nav' do
+      expect(page).to have_link("My Favorites (#{@dog_1.count_favorites})")
+      click_on("My Favorites (#{@dog_1.count_favorites})")
 
-    end
-
-    it 'can delete a pet' do
-
-      visit "pets/#{@dog_1.id}"
-
-      click_on 'Delete Pet'
-
-      assert_equal "/pets", current_path
-
-      expect(page).to_not have_content(@dog_1.name)
-      expect(page).to_not have_content(@dog_1.description)
-      expect(page).to_not have_content(@dog_1.approximate_age)
-      expect(page).to_not have_content("Gender: #{@dog_1.sex}")
-
+      expect(current_path).to eq "/favorites"
+      end
     end
   end
 end
