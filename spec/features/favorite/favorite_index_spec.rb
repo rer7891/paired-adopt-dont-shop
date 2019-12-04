@@ -39,8 +39,14 @@ RSpec.describe 'Favorites Index', type: :feature do
 
       visit '/favorites'
 
-      expect(page).to have_content(@dog_1.name)
-      expect(page).to have_content(@dog_2.name)
+      expect(page).to have_link('#{@dog_1.name}')
+      click_on ('#{@dog_1.name}')
+      expect(current_path).to eq "/pets/#{@dog_1.id}"
+
+      visit '/favorites'
+      expect(page).to have_link('#{@dog_2.name}')
+      click_on ('#{@dog_2.name}')
+      expect(current_path).to eq "/pets/#{@dog_2.id}"
       expect(page).to have_xpath("//img[@src='#{@dog_1.image_url}']")
       expect(page).to have_xpath("//img[@src='#{@dog_2.image_url}']")
     end
