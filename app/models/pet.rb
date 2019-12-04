@@ -10,7 +10,7 @@ class Pet < ApplicationRecord
   before_save :upcase_field
 
   def upcase_field
-    self.sex.upcase!
+    sex.upcase
   end
 
   def count_favorites
