@@ -30,7 +30,7 @@ RSpec.describe 'As a visitor', type: :feature do
       expect(page).to_not have_content(@dog_1.name)
       expect(page).to_not have_content(@dog_1.description)
       expect(page).to_not have_content(@dog_1.approximate_age)
-      expect(page).to_not have_content(@dog_1.sex)
+      expect(page).to_not have_content("Gender: #{@dog_1.sex}")
 
     end
   end
