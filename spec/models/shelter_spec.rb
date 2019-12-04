@@ -25,7 +25,7 @@ describe Shelter, type: :model do
     it {should validate_presence_of :state}
 
     it {should validate_presence_of :zip_code}
-    it { should validate_length_of(:zip_code).is_equal_to(5) }
+    it {should validate_length_of(:zip_code).is_equal_to(5) }
     it {should_not allow_value("80").for(:zip_code) }
   end
 
@@ -34,17 +34,9 @@ describe Shelter, type: :model do
   end
 
   describe 'methods'do
-  it ".count_pets" do
+  it ".count_pets will count how many pets are at that shelter" do
     expect(@shelter_1.count_pets).to eq 1
   end
 
-  describe 'test' do
-    it 'test' do
-      @dog_1.update({"image_url"=>"https://media.wired.com/photos/5dd593a829b9c40008b179b3/
-        master/w_2560%2Cc_limit/Cul-BabyYoda_mandalorian-thechild-1_af408bfd.jpg", "name"=>"Baby Yoda", "description"=>"I
-        am an adorable one strong with the Force. Enjoys eating frogs.", "approximate_age"=>"500", "sex"=>"M", "id"=>"1"})
-      @dog_1.save
-    end
   end
-end
 end
