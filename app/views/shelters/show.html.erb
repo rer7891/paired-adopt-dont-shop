@@ -28,7 +28,8 @@
         <% else %>
               <p>  </p>
         <% end %>
+      <p><%= link_to 'Edit This Review', "/shelters/#{@shelter.id}/reviews/edit"%></p>
     </section>
  <%end%>
 </section>
-<h2> <%= link_to 'Create A New Review', "/shelters/#{@shelter.id}/reviews/new"%></h2>
+<h2><%= link_to 'Create A New Review', "/shelters/#{@shelter.id}/reviews/new"%></h2>
