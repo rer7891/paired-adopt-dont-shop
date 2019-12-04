@@ -67,5 +67,6 @@ RSpec.configure do |config|
     end
   end
 
+  require 'support/factory_bot.rb'
   config.default_formatter = 'NyanCatFormatter'
 end
