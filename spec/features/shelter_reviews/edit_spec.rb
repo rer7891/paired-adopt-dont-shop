@@ -26,11 +26,12 @@ RSpec.describe 'As a visitor', type: :feature do
       click_on 'Edit This Review'
 
       expect(find_field('title').value).to eq 'Denver Pet Adoption Process'
-      expect(find_field('rating').value).to eq 4
       expect(find_field('content').value).to eq 'Denver Pets Shelter makes the process of adopting a pet easy and stress free.'
       expect(find_field('image_url').value).to eq 'https://media.wired.com/photos/5dd593a829b9c40008b179b3/master/w_2560%2Cc_limit/Cul-BabyYoda_mandalorian-thechild-1_af408bfd.jpg'
+      expect(page).to have_content('Rating')
 
       select('5', :from => 'Rating')
+      save_and_open_page
       fill_in 'title',   with: 'Great Adoption Process'
 
       expect(page).to have_button('Submit')

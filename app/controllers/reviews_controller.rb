@@ -17,7 +17,7 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-    @shelter = Shelter.find(params[:id])
+    @review = Review.find(params[:id])
   end
 
   private
