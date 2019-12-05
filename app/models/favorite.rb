@@ -17,4 +17,10 @@ class Favorite
     @content.values.sum
   end
 
+  def find_pet(id)
+    @content.any? do |key, value|
+      id == key
+    end
+  end
+
 end
