@@ -23,7 +23,12 @@ class ReviewsController < ApplicationController
   def update
     review = Review.find(params[:id])
     review.update(review_params)
-    redirect_to "/shelters/#{review.shelter.id}"
+    if review.save
+      redirect_to "/shelters/#{review.shelter.id}"
+    else
+      flash[:notice] = "Title, review, and rating are required. Please try again!"
+      redirect_to "/reviews/#{review.id}/edit"
+    end
   end
 
   private
