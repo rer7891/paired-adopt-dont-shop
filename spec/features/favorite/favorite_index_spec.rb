@@ -26,6 +26,14 @@ RSpec.describe 'Favorites Index', type: :feature do
                         favorite_status: false
                         )
     end
+  it 'will show a page that says no favorites if no favorites saved' do
+
+    visit '/favorites'
+
+    expect(page).to have_content('You have not selected any favorite pets yet!')
+
+
+  end
 
    it 'can see all the favorite pets' do
 
