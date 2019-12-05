@@ -1,16 +1,20 @@
 class FavoritesController < ApplicationController
   def index
-    @favorite_pets = Pet.where("favorite_status = true")
+    keys = @favorites.content.map {|key, value| key.to_i }
+    @pets = Pet.where(id: [keys])
+    # have a model method that takes the contents from  @favorites and iterates through and turns them into pet objects
   end
 
   def update
-   @pet = Pet.find(params[:id])
-   if @pet.favorite_status == false
-     @pet.update(favorite_status: true)
-     flash[:success] = "You added a new pet to your favorites!"
-   else
-     flash[:error] = "You have already favorited this pet!"
-   end
-   redirect_to "/pets/#{@pet.id}"
+  pet = Pet.find(params[:id])
+  if @favorites.content.keys.include?(pet.id.to_s)
+    flash[:error] = "You have already favorited this pet!"
+  else
+    @favorites.add_favorite(pet.id)
+    session[:favorite] = @favorites.content
+    flash[:success] = "You added a new pet to your favorites!"
   end
+   redirect_to "/pets/#{pet.id}"
+  end
+
 end

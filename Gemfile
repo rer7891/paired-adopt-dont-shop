@@ -41,6 +41,8 @@ group :development, :test do
   gem 'simplecov'
   gem 'shoulda-matchers'
   gem 'nyan-cat-formatter'
+  gem 'factory_bot_rails'
+  gem 'faker'
 end
 
 group :development do

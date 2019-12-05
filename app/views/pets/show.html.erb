@@ -1,18 +1,22 @@
+</br>
 <div class='center-div'>
-<%= image_tag("#{@pet.image_url}", {:style => "width:300px;"}) %>
+  <%= image_tag("#{@pet.image_url}", {:style => "width:300px;"}) %>
 <h2><%= @pet.name %></h2>
-<p>Description: <%= @pet.description %></p>
-<p>Approximate Age: <%= @pet.approximate_age%></p>
-<p>Gender: <%= @pet.sex %></p>
+  <p>Description: <%= @pet.description %></p>
+  <p>Approximate Age: <%= @pet.approximate_age%></p>
+  <p>Gender: <%= @pet.sex %></p>
 <% if @pet.is_adoptable %>
- <p>Status: Adoptable</p>
+  <p>Status: Adoptable</p>
 <% else %>
- <p>Status: Adoption Pending</p>
+  <p>Status: Adoption Pending</p>
 <% end %>
 
 <p><%= link_to 'Edit Pet', "/pets/#{@pet.id}/edit" %><br>
-
 <%= link_to 'Delete Pet', "/pets/#{@pet.id}", method: :delete %><br>
+<% if @favorites.content.keys.include?(@pet.id.to_s) == false %>
+  <%= link_to 'Favorite This Pet', "/favorites/#{@pet.id}", method: :patch %><br>
+<%else%>
+  <%= link_to 'Delete This Pet From Favorites', "/favorites/#{@pet.id}", method: :delete %><br>
+<%end%>
 
-<%= link_to 'Favorite This Pet', "/favorites/#{@pet.id}", method: :patch %><br>
 </div>

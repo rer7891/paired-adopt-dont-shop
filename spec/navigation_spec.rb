@@ -17,12 +17,17 @@ RSpec.describe 'Navigation bar', type: :feature do
                          sex: 'M',
                          favorite_status: true
                          )
+
       end
     it 'can see a favorites link' do
+      visit "/pets/#{@dog_1.id}"
+      click_on "Favorite This Pet"
+
       visit '/'
+
       within 'nav' do
-      expect(page).to have_link("My Favorites (#{@dog_1.count_favorites})")
-      click_on("My Favorites (#{@dog_1.count_favorites})")
+      expect(page).to have_link("Favorites: (1)")
+      click_on("Favorites: (1)")
 
       expect(current_path).to eq "/favorites"
       end
