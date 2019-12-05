@@ -29,6 +29,7 @@
               <p>  </p>
         <% end %>
       <p><%= link_to 'Edit This Review', "/reviews/#{review.id}/edit"%></p>
+      <p><%= link_to 'Delete This Review', "/reviews/#{review.id}", method: :delete%></p>
     </section>
  <%end%>
 </section>
