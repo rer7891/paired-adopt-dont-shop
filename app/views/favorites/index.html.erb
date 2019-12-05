@@ -1,10 +1,12 @@
 <h1> My Favorite Pets </h1>
+<% if @favorites.content.empty? == true %>
+  <h2> You have not selected any favorite pets yet! </h2>
+<% else %>
 <div class='center-div'>
   <% @pets.each do |pet| %>
       <p> <%= link_to "#{pet.name}", "/pets/#{pet.id}" %> </p>
       <p> <%= image_tag("#{pet.image_url}", {:style => "width:300px;"}) %></p>
     <% end %>
+  <%= link_to 'Delete All Favorites', "/favorites", method: :delete %></p>
   </div>
-  <% if @favorites.content.empty? == true %>
-    <h2> You have not selected any favorite pets yet! </h2>
 <%end%>
