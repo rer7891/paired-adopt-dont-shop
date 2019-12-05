@@ -27,7 +27,7 @@ RSpec.describe 'Favorites Index', type: :feature do
                         )
     end
 
-   xit 'can see all the favorite pets' do
+   it 'can see all the favorite pets' do
 
       visit "pets/#{@dog_1.id}"
 
