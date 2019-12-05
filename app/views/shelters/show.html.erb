@@ -18,9 +18,13 @@
       <p><%= review.rating %> stars</p>
       <p> <b> Review: </b> <%= review.content %></p>
         <% if "#{review.image_url}".present? %>
-            <p>  <%= image_tag("#{review.image_url}", {:style => "width:80%; height: 175px;"}) %> </p>
-        <%end%>
+              <p>  <%= image_tag("#{review.image_url}", {:style => "width:80%; height: 175px;"}) %> </p>
+        <% else %>
+              <p>  </p>
+        <% end %>
+      <p><%= link_to 'Edit This Review', "/reviews/#{review.id}/edit"%></p>
+      <p><%= link_to 'Delete This Review', "/reviews/#{review.id}", method: :delete%></p>
     </section>
  <%end%>
 </section>
-<h2> <%= link_to 'Create A New Review', "/shelters/#{@shelter.id}/reviews/new"%></h2>
+<h2><%= link_to 'Create A New Review', "/shelters/#{@shelter.id}/reviews/new"%></h2>
