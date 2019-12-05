@@ -26,8 +26,8 @@ RSpec.describe 'Navigation bar', type: :feature do
       visit '/'
 
       within 'nav' do
-      expect(page).to have_link("Favorites:#{@favorite_count}")
-      click_on("Favorites:#{@favorite_count}")
+      expect(page).to have_link("Favorites: (1)")
+      click_on("Favorites: (1)")
 
       expect(current_path).to eq "/favorites"
       end
