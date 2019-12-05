@@ -1,8 +1,7 @@
 <h1> My Favorite Pets </h1>
-
-<% @pets.each do |pet| %>
-  <p> <% if @favorites.find_pet(pet.id.to_s) %> </p>
+<div class='center-div'>
+  <% @pets.each do |pet| %>
       <p> <%= link_to "#{ pet.name}", "/pets/#{pet.id}" %> </p>
       <p> <%= image_tag("#{pet.image_url}", {:style => "width:300px;"}) %></p>
-      <% end %>
-<% end %>
+  <% end %>
+</div>
