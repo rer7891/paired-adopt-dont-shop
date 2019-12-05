@@ -5,7 +5,6 @@ class ReviewsController < ApplicationController
 
   def create
     shelter = Shelter.find(params[:id])
-    #flash messages for users once a review is created.
     review = shelter.reviews.new(review_params)
      if review.save
         flash[:notice] = "You have created a review!"

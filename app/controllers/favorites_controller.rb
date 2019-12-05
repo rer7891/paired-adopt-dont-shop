@@ -23,6 +23,10 @@ class FavoritesController < ApplicationController
     flash[:success] = "You have removed this pet from favorites."
 
     redirect_back fallback_location: @post
+
+    # def destroy_all
+    #   session.clear
+    #   redirect_to '/favorites'
   end
 
 end
