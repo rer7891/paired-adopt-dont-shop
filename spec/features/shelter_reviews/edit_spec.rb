@@ -31,7 +31,6 @@ RSpec.describe 'As a visitor', type: :feature do
       expect(page).to have_content('Rating')
 
       select('5', :from => 'Rating')
-      save_and_open_page
       fill_in 'title',   with: 'Great Adoption Process'
 
       expect(page).to have_button('Submit')

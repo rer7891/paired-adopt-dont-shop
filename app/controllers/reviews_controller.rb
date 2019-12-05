@@ -7,7 +7,7 @@ class ReviewsController < ApplicationController
     shelter = Shelter.find(params[:id])
     #flash messages for users once a review is created.
     review = shelter.reviews.new(review_params)
-      if review.save
+     if review.save
         flash[:notice] = "You have created a review!"
         redirect_to "/shelters/#{shelter.id}"
      else
@@ -18,6 +18,12 @@ class ReviewsController < ApplicationController
 
   def edit
     @review = Review.find(params[:id])
+  end
+
+  def update
+    review = Review.find(params[:id])
+    review.update(review_params)
+    redirect_to "/shelters/#{review.shelter.id}"
   end
 
   private
