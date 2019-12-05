@@ -22,7 +22,7 @@ class FavoritesController < ApplicationController
     session[:favorite] = @favorites.content
     flash[:success] = "You have removed this pet from favorites."
 
-    redirect_to "/pets/#{params[:id]}"
+    redirect_back fallback_location: @post
   end
 
 end
