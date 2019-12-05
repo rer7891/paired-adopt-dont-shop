@@ -27,6 +27,15 @@ RSpec.describe 'Favorites Index', type: :feature do
                         )
     end
 
+   it 'will show a page that says no favorites if no favorites saved' do
+
+      visit '/favorites'
+
+      expect(page).to have_content('You have not selected any favorite pets yet!')
+
+
+   end
+
    it 'can see all the favorite pets' do
 
       visit "pets/#{@dog_1.id}"
@@ -49,6 +58,22 @@ RSpec.describe 'Favorites Index', type: :feature do
       expect(current_path).to eq "/pets/#{@dog_2.id}"
       expect(page).to have_xpath("//img[@src='#{@dog_1.image_url}']")
       expect(page).to have_xpath("//img[@src='#{@dog_2.image_url}']")
+    end
+
+    it 'will delete all favorites' do
+
+       visit "pets/#{@dog_1.id}"
+
+       click_on 'Favorite This Pet'
+
+       visit '/favorites'
+
+       expect(page).to have_content(@dog_1.name)
+
+       click_on "Delete All Favorites"
+
+       expect(page).to_not have_content(@dog_1.name)
+
     end
   end
 end
