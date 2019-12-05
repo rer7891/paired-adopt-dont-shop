@@ -8,4 +8,5 @@
       <p> <%= image_tag("#{pet.image_url}", {:style => "width:300px;"}) %></p>
       <p id=delete<%="#{pet.id}"%> > <%= link_to 'Delete All Favorites', "/favorites/#{pet.id}", method: :delete %><br></p>
   <% end %>
+    <% end %>
 </div>

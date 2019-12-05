@@ -59,7 +59,7 @@ RSpec.describe 'Favorites Index', type: :feature do
       expect(page).to have_xpath("//img[@src='#{@dog_1.image_url}']")
       expect(page).to have_xpath("//img[@src='#{@dog_2.image_url}']")
     end
-      it 'Can remove any pet from favorites' do
+    it 'Can remove any pet from favorites' do
         visit "pets/#{@dog_1.id}"
 
         click_on 'Favorite This Pet'
@@ -71,14 +71,14 @@ RSpec.describe 'Favorites Index', type: :feature do
         visit '/favorites'
 
         within("#delete#{@dog_1.id}") do
-          click_link "Delete This Pet From Favorites"
+          click_link "Delete All Favorites"
           expect(current_path).to eql("/favorites")
         end
 
         expect(page).to have_content("Favorites: (1)")
         expect(page).to_not have_content(@dog_1.name)
     end
-      it 'will delete all favorites' do
+    it 'will delete all favorites' do
 
            visit "pets/#{@dog_1.id}"
 
@@ -91,6 +91,6 @@ RSpec.describe 'Favorites Index', type: :feature do
            click_on "Delete All Favorites"
 
            expect(page).to_not have_content(@dog_1.name)
-      end 
+    end
   end
 end
