@@ -18,6 +18,11 @@
         <li><%= link_to "Favorites: (#{@favorites.favorite_count})", "/favorites" %></li>
       </ul>
     </nav>
+    <div>
+      <% flash.each do |type, message| %>
+           <p><%= message %></p>
+         <% end %>
+    </div>
     <%= yield %>
   </body>
 </html>
