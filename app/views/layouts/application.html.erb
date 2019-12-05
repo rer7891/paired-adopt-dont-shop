@@ -18,6 +18,9 @@
         <li><%= link_to "My Favorites (#{Pet.all.where("favorite_status = true").count})", "/favorites" %></li>
       </ul>
     </nav>
+    <% flash.each do |type, message| %>
+         <p><%= message %></p>
+       <% end %>
     <%= yield %>
   </body>
 </html>
