@@ -82,7 +82,8 @@ RSpec.describe 'Pets show page', type: :feature do
   end
 
   describe "As a visitor after I've favorited a pet" do
-    it "when I visit that pet's show page I no longer see a link to favorite pet" do
+
+it "when I visit that pet's show page I no longer see a link to favorite pet" do
       dog_1 = @shelter_1.pets.create!(image_url: '/',
                          name: 'Kuma',
                          description: 'I am an energetic, black Shiba Inu.',
