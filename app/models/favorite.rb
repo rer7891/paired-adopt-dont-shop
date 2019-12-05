@@ -17,10 +17,7 @@ class Favorite
     @content.values.sum
   end
 
-  def find_pet(id)
-    @content.any? do |key, value|
-      id == key
-    end
+  def favorite_delete(id)
+    @content.delete(id.to_s)
   end
-
 end
