@@ -15,7 +15,7 @@
       <ul>
         <li><%= link_to "All Pets", "/pets" %></li>
         <li><%= link_to "All Shelters", "/shelters" %> </li>
-        <li><%= link_to "Favorites:#{@favorite_count}", "/favorites" %></li>
+        <li><%= link_to "Favorites: (#{@favorites.favorite_count})", "/favorites" %></li>
       </ul>
     </nav>
     <%= yield %>
