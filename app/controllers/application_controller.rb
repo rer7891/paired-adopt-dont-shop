@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   before_action :favorite
 
   def favorite
-    cookies[:favorites] ||= " "
+    @favorites ||= Favorite.new(session[:favorite])
   end
+
+
 end
