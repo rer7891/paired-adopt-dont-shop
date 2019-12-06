@@ -20,4 +20,12 @@ class Favorite
   def favorite_delete(id)
     @content.delete(id.to_s)
   end
+
+  def keys
+    @content.map {|key, value| key.to_i }
+  end
+
+  def include?(pet_id)
+    @content.keys.include?(pet_id.to_s)
+  end
 end

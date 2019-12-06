@@ -1,13 +1,11 @@
 class FavoritesController < ApplicationController
   def index
-    keys = @favorites.content.map {|key, value| key.to_i }
-    @pets = Pet.where(id: [keys])
-    # have a model method that takes the contents from  @favorites and iterates through and turns them into pet objects
+    @pets = Pet.where(id: [@favorites.keys])
   end
 
   def update
   pet = Pet.find(params[:id])
-  if @favorites.content.keys.include?(pet.id.to_s)
+  if @favorites.include?(pet.id)
     flash[:error] = "You have already favorited this pet!"
   else
     @favorites.add_favorite(pet.id)
