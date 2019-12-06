@@ -30,4 +30,7 @@ Rails.application.routes.draw do
   patch '/reviews/:id', to: 'reviews#update'
   delete 'reviews/:id', to: 'reviews#destroy'
 
+  get '/applications/new', to: 'applications#new'
+  post '/applications', to: 'applications#create'
+
 end

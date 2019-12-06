@@ -23,37 +23,41 @@ RSpec.describe "As a visitor when I visit /favorites", type: :feature do
                       sex: 'F',
                       favorite_status: false
                       )
+    visit "pets/#{@dog_1.id}"
+    click_on 'Favorite This Pet'
+    visit "/pets/#{@dog_2.id}"
+    click_on 'Favorite This Pet'
+    visit '/favorites'
   end
   describe "I see a link for adopting my favorite pets" do
-    xit "when I click that link I see a form" do
-        visit "pets/#{@dog_1.id}"
-        click_on 'Favorite This Pet'
-        visit "/pets/#{@dog_2.id}"
-        click_on 'Favorite This Pet'
-        visit '/favorites'
+    it "when I click that link I see a form" do
 
         click_on "Apply To Adopt Pet(s)"
         expect(current_path).to eql("/applications/new")
    end
-      xit "where I can select multiple pets and fill in personal details" do
-        visit '/applications/new'
+      it "where I can select multiple pets and fill in personal details" do
+        visit "/applications/new"
 
-        fill_in 'Name',         with: "Becky Robran"
-        fill_in 'Address',      with: '123 Main Street'
-        fill_in 'City',         with: 'Lakewood'
-        fill_in 'State',        with: 'CO'
-        fill_in 'Zip',          with: 80023
-        fill_in 'Phone Number',  with: '423-316-2121'
-        fill_in 'Description' ,  with: 'Loving and work from home. I would give a great home.'
+        page.check "#{@dog_1.name}"
+        page.check "#{@dog_2.name}"
+
+        fill_in 'name',         with: "Becky Robran"
+        fill_in 'address',      with: '123 Main Street'
+        fill_in 'city',         with: 'Lakewood'
+        fill_in 'state',        with: 'CO'
+        fill_in 'zip',          with: 80023
+        fill_in 'phone_number',  with: '423-316-2121'
+        fill_in 'description' ,  with: 'Loving and work from home. I would give a great home.'
         click_button 'Submit Application'
-      end
-      xit "when I sumbit my form I'm taken back to favorites wher I no longer see the pets" do
-        visit '/favorites'
+
+        expect(current_path).to eql("/favorites")
+        application = Application.last
+        expect(application.name).to eql("Becky Robran")
 
         expect(page).to_not have_content("#{@dog_1.name}")
         expect(page).to_not have_content("#{@dog_2.name}")
 
-        expect(page).to have_content("Your application was recieved!")
+        expect(page).to have_content("Your application was received!")
       end
   end
 end
