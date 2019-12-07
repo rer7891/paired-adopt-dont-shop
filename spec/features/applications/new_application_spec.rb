@@ -50,13 +50,15 @@ RSpec.describe "As a visitor when I visit /favorites", type: :feature do
         click_button 'Submit Application'
 
         application = Application.last
+
         expect(application.name).to eql("Becky Robran")
-
         expect(current_path).to eql("/favorites")
-        expect(page).to_not have_content("#{@dog_1.name}")
-        expect(page).to have_content("#{@dog_2.name}")
-
+        within("div#favorite_index") do
+          expect(page).to_not have_content("#{@dog_1.name}")
+          expect(page).to have_content("#{@dog_2.name}")
+        end 
         expect(page).to have_content("Your application was received!")
+
       end
   end
 end
