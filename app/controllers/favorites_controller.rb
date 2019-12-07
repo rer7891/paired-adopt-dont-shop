@@ -1,6 +1,6 @@
 class FavoritesController < ApplicationController
   def index
-    @pets = Pet.where(id: [@favorites.keys])
+    @pets = Pet.all 
   end
 
   def update
