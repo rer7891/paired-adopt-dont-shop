@@ -19,7 +19,8 @@ class FavoritesController < ApplicationController
     if params[:id] == nil
       @favorites = session.clear
     else
-    @favorites.favorite_delete(params[:id])
+    pet = Pet.where(id: params[:id])
+    @favorites.favorite_delete(pet)
     session[:favorite] = @favorites.content
     flash[:success] = "You have removed this pet from favorites."
     end
