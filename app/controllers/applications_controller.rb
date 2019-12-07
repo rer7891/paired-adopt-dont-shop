@@ -9,8 +9,9 @@ class ApplicationsController < ApplicationController
 
     if application.save
       pets = Pet.where(id: params.keys)
-
-      session[:favorites] = @favorites.favorite_delete(pets)
+      application.pets << pets
+      @favorites.favorite_delete(pets)
+      session[:favorites] = @favorites.content
       flash[:success]= "Your application was received!"
 
       redirect_to '/favorites'
@@ -18,6 +19,10 @@ class ApplicationsController < ApplicationController
      flash[:error]= "You have not filled out all necessary fields"
      redirect_to '/applications/new'
     end
+  end
+
+  def show
+    @application = Application.find(params[:id])
   end
 
   private
