@@ -17,12 +17,14 @@ class Favorite
     @content.values.sum
   end
 
-  def favorite_delete(id)
-    @content.delete(id.to_s)
+  def favorite_delete(pets)
+    pets.each do |pet|
+      @content.delete(pet.id.to_s)
+    end
   end
 
   def keys
-    @content.map {|key, value| key.to_i }
+    @content.keys 
   end
 
   def include?(pet_id)
