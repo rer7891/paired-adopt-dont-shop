@@ -6,10 +6,14 @@ class ApplicationsController < ApplicationController
 
   def create
     application = Application.new(application_params)
+
     if application.save
-      @favorites = session.clear
+      pets = Pet.where(id: params.keys)
+
+      session[:favorites] = @favorites.favorite_delete(pets)
       flash[:success]= "Your application was received!"
-     redirect_to '/favorites'
+
+      redirect_to '/favorites'
     else
      flash[:error]= "You have not filled out all necessary fields"
      redirect_to '/applications/new'
