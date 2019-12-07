@@ -8,7 +8,7 @@ class ApplicationsController < ApplicationController
     application = Application.new(application_params)
 
     if application.save
-      pets = Pet.where(id: @favorites.keys)
+      pets = Pet.where(id: params.keys)
 
       session[:favorites] = @favorites.favorite_delete(pets)
       flash[:success]= "Your application was received!"
