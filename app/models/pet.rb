@@ -1,5 +1,9 @@
 class Pet < ApplicationRecord
   belongs_to :shelter
+
+  has_many :pet_applications
+  has_many :applications, through: :pet_applications
+
   validates :shelter, presence: true
   validates :image_url, presence: true
   validates :name, presence: true, format: { with: /\A[a-zA-Z ]+\z/ }
@@ -13,8 +17,8 @@ class Pet < ApplicationRecord
     sex.upcase
   end
 
-  def count_favorites
-    Pet.all.where("favorite_status = true").count
+  def update_status
+    is_adoptable = false
   end
 
 end
