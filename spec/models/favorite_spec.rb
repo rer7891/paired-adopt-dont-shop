@@ -49,11 +49,11 @@ describe Favorite do
       favorites.add_favorite("#{dog.id}")
       expect(favorites.content.key?("#{dog.id}")).to eql(true)
 
-      favorites.favorite_delete("#{dog.id}")
-      expect(favorites.content).to eql({"#{dog_1.id}" => 1})
+      favorites.favorite_delete([dog_1, dog])
+      expect(favorites.content).to eql({})
 
-      expect(favorites.keys).to eql([dog_1.id])
-
+      favorites.add_favorite("#{dog_1.id}")
+      expect(favorites.keys).to eql([dog_1.id.to_s])
       expect(favorites.include?("#{dog_1.id}")).to eql(true)
       expect(favorites.include?("#{dog.id}")).to eql(false)
     end
