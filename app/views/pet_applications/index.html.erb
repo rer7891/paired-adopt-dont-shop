@@ -1,11 +1,14 @@
 <h1>All Applications for <%=@pet.name%></h1>
-
-<% @applications.each do |app| %>
-  <ul>
-    <section id="app-<%= app.id %>">
-      <li>
-        <%= link_to app.name, "/applications/#{app.id}" %>
-      </li>
-    </section>
-  </ul>
+<%if @applications.empty? == false%>
+  <% @applications.each do |app| %>
+    <ul>
+      <section id="app-<%= app.id %>">
+        <li>
+          <%= link_to app.name, "/applications/#{app.id}" %>
+        </li>
+      </section>
+    </ul>
+  <% end %>
+<% else %>
+  <h2>No applications have been submitted for this pet.</h2>
 <% end %>
