@@ -52,11 +52,18 @@ RSpec.describe "As a visitor when I visit /favorites", type: :feature do
         application = Application.last
 
         expect(application.name).to eql("Becky Robran")
+        expect(application.address).to eql("123 Main Street")
+        expect(application.city).to eql("Lakewood")
+        expect(application.state).to eql("CO")
+        expect(application.zip).to eql("80023")
+        expect(application.phone_number).to eql("423-316-2121")
+        expect(application.description).to eql("Loving and work from home. I would give a great home.")
+
         expect(current_path).to eql("/favorites")
         within("div#favorite_index") do
           expect(page).to_not have_content("#{@dog_1.name}")
           expect(page).to have_content("#{@dog_2.name}")
-        end 
+        end
         expect(page).to have_content("Your application was received!")
 
       end
