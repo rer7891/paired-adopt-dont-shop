@@ -17,23 +17,21 @@ RSpec.describe "As a visitor", type: :feature do
                          favorite_status: true
                          )
 
-     @dog_2 = @shelter_1.pets.create!(image_url: '/',
-                        name: 'Kuma',
-                        description: 'I am an energetic, black Shiba Inu.',
-                        approximate_age: 1,
-                        sex: 'F',
-                        favorite_status: false
-                        )
+    @application_1 = @dog_1.applications.create!(name: "Becky Robran",
+                                               address: "12342 Main Street",
+                                               city: "Broomfield",
+                                               state: "CO",
+                                               zip: "34533",
+                                               phone_number: "43253424324",
+                                               description: "I will be a good dog parent.")
 
-      @application_1 = @dog_1.applications.create!(name: "Becky Robran",
-                                                 address: "12342 Main Street",
-                                                 city: "Broomfield",
-                                                 state: "CO",
-                                                 zip: "34533",
-                                                 phone_number: "43253424324",
-                                                 description: "I will be a good dog parent.")
-        @application_1.pets << @dog_1
-        @application_1.pets << @dog_2
+     @application_2 = @dog_1.applications.create!(name: "Linda Le",
+                                                  address: "12345 Union St",
+                                                  city: "Lakewood",
+                                                  state: "CO",
+                                                  zip: "80228",
+                                                  phone_number: "7201234567",
+                                                  description: "I love dogs.")
     end
 
     it 'can see all the applications for a pet' do
@@ -47,12 +45,11 @@ RSpec.describe "As a visitor", type: :feature do
 
       click_on("#{@application_1.name}")
       expect(current_path).to eql("/applications/#{@application_1.id}")
-
-      visit "/pets/#{@dog_2.id}"
-
+      visit "/pets/#{@dog_1.id}"
       click_on('View All Applications for this Pet')
       click_on("#{@application_2.name}")
       expect(current_path).to eql("/applications/#{@application_2.id}")
+      save_and_open_page
     end
   end
 end
