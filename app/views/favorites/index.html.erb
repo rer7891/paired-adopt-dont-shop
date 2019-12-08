@@ -2,12 +2,26 @@
 <% if @favorites.content.empty? == true %>
   <h2> You have not selected any favorite pets yet! </h2>
 <% else %>
+<div class='center-div' id='favorite_index'>
+  <% @pets.each do |pet| %>
+      <% if @favorites.include?(pet.id.to_s) %>
+        <p <%=pet.id%>> <%= link_to "#{pet.name}", "/pets/#{pet.id}" %> </p>
+        <p> <%= image_tag("#{pet.image_url}", {:style => "width:300px;"}) %></p>
+        <p id=delete<%="#{pet.id}"%> > <%= link_to 'Delete All Favorites', "/favorites/#{pet.id}", method: :delete %><br></p>
+      <%end%>
+  <% end %>
+    <center>
+      <%= link_to "Apply To Adopt Pet(s)", "/applications/new" %>
+</center> <br />
+<% end %>
+</div>
+
+  <h1> Pets with Applications Pending</h1>
 <div class='center-div'>
   <% @pets.each do |pet| %>
-      <p> <%= link_to "#{pet.name}", "/pets/#{pet.id}" %> </p>
-      <p> <%= image_tag("#{pet.image_url}", {:style => "width:300px;"}) %></p>
-      <p id=delete<%="#{pet.id}"%> > <%= link_to 'Delete All Favorites', "/favorites/#{pet.id}", method: :delete %><br></p>
+    <%if !pet.applications.empty? %>
+    <p id=application-<%=pet.id%> > <%= link_to "#{pet.name}", "/pets/#{pet.id}" %> </p>
+    <p> <%= image_tag("#{pet.image_url}", {:style => "width:300px;"}) %></p>
+    <%end  %>
   <% end %>
-    <%= link_to "Apply To Adopt Pet(s)", "/applications/new" %>
-    <% end %>
 </div>

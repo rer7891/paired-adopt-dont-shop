@@ -1,6 +1,6 @@
 <%= form_tag "/applications" do %>
   <% @pets.each do |pet| %>
-    <%= check_box_tag("#{pet.id}") %>
+    <%= check_box_tag("#{pet.id}","#{pet.name}") %>
 <p> <%= label_tag("#{pet.id}", "#{pet.name}") %> </p>
   <% end %>
   <%=label_tag 'Name' %>

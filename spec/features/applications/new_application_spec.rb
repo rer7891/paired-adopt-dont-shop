@@ -39,7 +39,6 @@ RSpec.describe "As a visitor when I visit /favorites", type: :feature do
         visit "/applications/new"
 
         page.check "#{@dog_1.name}"
-        page.check "#{@dog_2.name}"
 
         fill_in 'name',         with: "Becky Robran"
         fill_in 'address',      with: '123 Main Street'
@@ -50,14 +49,16 @@ RSpec.describe "As a visitor when I visit /favorites", type: :feature do
         fill_in 'description' ,  with: 'Loving and work from home. I would give a great home.'
         click_button 'Submit Application'
 
-        expect(current_path).to eql("/favorites")
         application = Application.last
+
         expect(application.name).to eql("Becky Robran")
-
-        expect(page).to_not have_content("#{@dog_1.name}")
-        expect(page).to_not have_content("#{@dog_2.name}")
-
+        expect(current_path).to eql("/favorites")
+        within("div#favorite_index") do
+          expect(page).to_not have_content("#{@dog_1.name}")
+          expect(page).to have_content("#{@dog_2.name}")
+        end 
         expect(page).to have_content("Your application was received!")
+
       end
   end
 end

@@ -11,6 +11,7 @@
 Pet.destroy_all
 Review.destroy_all
 Shelter.destroy_all
+Application.destroy_all
 
 shelter_1 = Shelter.create!(name: 'Denver Pet Shelter',
                            address: '123 Colfax Ave',
@@ -24,14 +25,14 @@ shelter_2 = Shelter.create!(name: 'Colorado Magical Creatures Rescue',
                             state: 'CO',
                             zip_code: '80012')
 
-shelter_1.pets.create!(image_url: 'https://media.wired.com/photos/5dd593a829b9c40008b179b3/master/w_2560%2Cc_limit/Cul-BabyYoda_mandalorian-thechild-1_af408bfd.jpg',
+pet_1 = shelter_1.pets.create!(image_url: 'https://media.wired.com/photos/5dd593a829b9c40008b179b3/master/w_2560%2Cc_limit/Cul-BabyYoda_mandalorian-thechild-1_af408bfd.jpg',
                        name: 'Baby Yoda',
                        description: 'I am an adorable one strong with the Force. Enjoys eating frogs.',
                        approximate_age: 50,
                        sex: 'M',
 
                        )
-shelter_1.pets.create!(image_url: 'https://cdn3.movieweb.com/i/article/HIxWc8aYAdMq5IYlYo0YPjfnqpUYfh/798:75/Gremlins-Movie-1984-Gizmo-Original-Villain.jpg',
+pet_2 = shelter_1.pets.create!(image_url: 'https://cdn3.movieweb.com/i/article/HIxWc8aYAdMq5IYlYo0YPjfnqpUYfh/798:75/Gremlins-Movie-1984-Gizmo-Original-Villain.jpg',
                         name: 'Gizmo',
                         description: 'I am a very fluffy, kind Mogwai. Do not place near water.',
                         approximate_age: 2,
@@ -55,3 +56,12 @@ review_2 = Review.create!(title: 'Denver Pet Is the Best',
                             rating: 5,
                             content: 'Denver Pet Shelter helped us find a new family member. I can never thank them enough.',
                             shelter: shelter_1)
+application = Application.create(name: "Becky Robran",
+                                 address: "1234 Main Street",
+                                 city: "Denver",
+                                 state: "CO",
+                                 zip: "87921",
+                                 phone_number: "4232423424",
+                                 description: "I will give this pet a good home.")
+
+application.pets << [pet_1, pet_2]
