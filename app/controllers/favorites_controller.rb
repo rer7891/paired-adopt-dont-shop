@@ -1,6 +1,6 @@
 class FavoritesController < ApplicationController
   def index
-    @pets = Pet.all 
+    @pets = Pet.all
   end
 
   def update
@@ -19,10 +19,10 @@ class FavoritesController < ApplicationController
     if params[:id] == nil
       @favorites = session.clear
     else
-    pet = Pet.where(id: params[:id])
-    @favorites.favorite_delete(pet)
-    session[:favorite] = @favorites.content
-    flash[:success] = "You have removed this pet from favorites."
+      pet = Pet.where(id: params[:id])
+      @favorites.favorite_delete(pet)
+      session[:favorite] = @favorites.content
+      flash[:success] = "You have removed this pet from favorites."
     end
     redirect_back fallback_location: @post
   end

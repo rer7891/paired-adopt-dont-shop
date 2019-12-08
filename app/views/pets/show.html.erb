@@ -18,5 +18,6 @@
 <%else%>
   <%= link_to 'Delete This Pet From Favorites', "/favorites/#{@pet.id}", method: :delete %><br>
 <%end%>
+<%= link_to 'View All Applications for this Pet', "/pets/#{@pet.id}/applications" %>
 
 </div>
