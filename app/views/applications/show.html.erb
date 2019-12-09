@@ -9,8 +9,12 @@
     <p>Phone Number: <%= @application.phone_number %><br></p>
     <p>Applicant Description: <%= @application.description %><br></p>
 
+
     <% @application.pets.each do |pet| %>
     <p>Pets Applied For: <%= link_to "#{pet.name}", "/pets/#{pet.id}" %><br></p>
+
+    <%= link_to "#{pet.name}", "/pets/#{pet.id}" %>
+    <%= link_to "Approve Application for #{pet.name}", "/pets/#{pet.id}/#{pet.is_adoptable}/applications", method: :patch %>
     <%end %>
-  </center>
+</center>
 </div>
