@@ -1,7 +1,7 @@
 <%= form_tag "/applications" do %>
   <% @pets.each do |pet| %>
     <%= check_box_tag("#{pet.id}","#{pet.name}") %>
-<p> <%= label_tag("#{pet.id}", "#{pet.name}") %> </p>
+<%= link_to pet.name, "/pets/#{pet.id}" %> </br>
   <% end %>
   <%=label_tag 'Name' %>
 <p><%=text_field_tag :name %> </p>

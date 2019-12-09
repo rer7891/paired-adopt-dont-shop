@@ -99,6 +99,33 @@ RSpec.describe 'Pets show page', type: :feature do
       expect(page).to_not have_link('Favorite This Pet')
       expect(page).to have_link('Delete This Pet From Favorites')
     end
+
+    it 'cannot approve more than one application for a specific pet' do
+
+      @application_1 = @dog_1.applications.create!(name: "Becky Robran",
+                                                 address: "12342 Main Street",
+                                                 city: "Broomfield",
+                                                 state: "CO",
+                                                 zip: "34533",
+                                                 phone_number: "43253424324",
+                                                 description: "I will be a good dog parent.")
+
+      visit "/applications/#{@application_1.id}"
+      click_on("Approve Application for #{@dog_1.name}")
+      expect(current_path).to eql("/pets/#{@dog_1.id}")
+
+      @application_2 = @dog_1.applications.create!(name: "Linda Le",
+                                                 address: "12342 Main Street",
+                                                 city: "Broomfield",
+                                                 state: "CO",
+                                                 zip: "34533",
+                                                 phone_number: "43253424324",
+                                                 description: "I will be a good dog parent.")
+
+      visit "/applications/#{@application_2.id}"
+      click_on("Approve Application for #{@dog_1.name}")
+      expect(page).to have_content("No more applications can be approved for this pet at this time.")
+    end
   end
  end
 end
