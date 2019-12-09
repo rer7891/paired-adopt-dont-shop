@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191207142344) do
+ActiveRecord::Schema.define(version: 20191206224610) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20191207142344) do
     t.string "sex", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "is_adoptable", default: true
+    t.boolean "is_adoptable", default: true, null: false
     t.integer "shelter_id"
     t.string "description", null: false
     t.boolean "favorite_status", default: false
