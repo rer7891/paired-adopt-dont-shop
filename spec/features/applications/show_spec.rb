@@ -44,6 +44,15 @@ RSpec.describe "As a visitor ", type: :feature do
                                                    phone_number: "43253424324",
                                                    description: "I will be a good dog parent.")
         @application_1.pets << @dog_2
+
+        @application_2 = @dog_1.applications.create!(name: "Linda Le",
+                                                   address: "12342 Main Street",
+                                                   city: "Broomfield",
+                                                   state: "CO",
+                                                   zip: "34533",
+                                                   phone_number: "43253424324",
+                                                   description: "I will be a good dog parent.")
+          @application_2.pets << @dog_1
     end
 
     it "I can see all application details including all pets" do
@@ -76,6 +85,7 @@ RSpec.describe "As a visitor ", type: :feature do
       expect("#{@dog_1.is_adoptable}").to eql("true")
       expect(page).to have_content("Status: Adoption Pending")
       expect(page).to have_content("On hold for Becky Robran")
+      expect(page).to_not have_content("Linda Le")
 
     end
   end

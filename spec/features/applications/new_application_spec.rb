@@ -37,8 +37,8 @@ RSpec.describe "As a visitor when I visit /favorites", type: :feature do
    end
       it "where I can select multiple pets and fill in personal details" do
         visit "/applications/new"
-
-        page.check "#{@dog_1.name}"
+    
+        page.check "#{@dog_1.id}"
 
         fill_in 'name',         with: "Becky Robran"
         fill_in 'address',      with: '123 Main Street'

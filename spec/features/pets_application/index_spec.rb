@@ -32,6 +32,31 @@ RSpec.describe "Favorites Index Page", type: :feature do
                                     favorite_status: true
                                     )
 
+      @dog_2 = @shelter_1.pets.create!(image_url: '/',
+                         name: 'Butter',
+                         approximate_age: 4,
+                         sex: 'M',
+                         description: 'I am a golden retriever who loves to play fetch.'
+                         )
+
+      @application_1 = @dog_1.applications.create!(name: "Becky Robran",
+                                                         address: "12342 Main Street",
+                                                         city: "Broomfield",
+                                                         state: "CO",
+                                                         zip: "34533",
+                                                         phone_number: "43253424324",
+                                                         description: "I will be a good dog parent.")
+
+
+
+      @application_2 = @dog_2.applications.create!(name: "Linda Le",
+                                                         address: "12342 Main Street",
+                                                         city: "Broomfield",
+                                                         state: "CO",
+                                                         zip: "34533",
+                                                         phone_number: "43253424324",
+                                                         description: "I will be a good dog parent.")
+       @application_2.pets << @dog_1
     end
 
     it "can see all applications for a certain pet" do
@@ -78,4 +103,4 @@ RSpec.describe "Favorites Index Page", type: :feature do
 
      end
    end
- end
+end
