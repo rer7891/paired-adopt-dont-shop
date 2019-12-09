@@ -64,16 +64,20 @@ RSpec.describe "As a visitor ", type: :feature do
     end
 
     it 'can approve an application for that specific pet' do
-      visit "applications/#{@application_1.id}"
+      visit "/applications/#{@application_1.id}"
 
       expect(page).to have_link("Approve Application for #{@dog_1.name}")
       expect(page).to have_link("Approve Application for #{@dog_2.name}")
 
       click_on("Approve Application for #{@dog_1.name}")
-      expect (current_path).to eql("/pets/#{@dog_1.id}")
+      expect(current_path).to eql("/pets/#{@dog_1.id}")
 
-      expect("#{@dog_1.is_adoptable}").to eql("Pending")
+
+      expect("#{@dog_1.is_adoptable}").to eql("true")
+      expect(page).to have_content("Status: Adoption Pending")
+      save_and_open_page
       expect(page).to have_content("On hold for Becky Robran")
+
     end
   end
 end
