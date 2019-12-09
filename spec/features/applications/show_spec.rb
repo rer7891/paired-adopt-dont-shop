@@ -78,24 +78,5 @@ RSpec.describe "As a visitor ", type: :feature do
       expect(page).to have_content("On hold for Becky Robran")
 
     end
-
-    it 'cannot approve more than one application for a specific pet' do
-
-      visit "/applications/#{@application_1.id}"
-      click_on("Approve Application for #{@dog_1.name}")
-      expect(current_path).to eql("/pets/#{@dog_1.id}")
-
-      @application_2 = @dog_1.applications.create!(name: "Linda Le",
-                                                 address: "12342 Main Street",
-                                                 city: "Broomfield",
-                                                 state: "CO",
-                                                 zip: "34533",
-                                                 phone_number: "43253424324",
-                                                 description: "I will be a good dog parent.")
-
-      visit "/applications/#{application_2.id}"
-      click_on("Approve Application for #{@dog_1.name}")
-      expect(page).to have_content("No more applications can be approved for this pet at this time.")
-    end
   end
 end
