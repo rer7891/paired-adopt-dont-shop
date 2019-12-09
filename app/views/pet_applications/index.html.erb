@@ -1,5 +1,6 @@
 <h1>All Applications for <%=@pet.name%></h1>
-<%if @applications.empty? == false%>
+<section class='center-div'>
+<%if !@applications.empty?%>
   <% @applications.each do |app| %>
     <ul>
       <section id="app-<%= app.id %>">
@@ -7,8 +8,9 @@
           <%= link_to app.name, "/applications/#{app.id}" %>
         </li>
       </section>
-    </ul>
+    </ul><br><br>
   <% end %>
 <% else %>
-  <h2>No applications have been submitted for this pet.</h2>
+  <h2>No applications have been submitted for this pet.</h2><br>
 <% end %>
+</section>

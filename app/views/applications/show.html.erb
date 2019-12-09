@@ -1,14 +1,16 @@
 <h1>All Pending Applications</h1>
-<div class='center-div'>
-  <%= @application.name %>
-  <%= @application.address %>
-  <%= @application.city %>
-  <%= @application.state %>
-  <%= @application.zip %>
-  <%= @application.phone_number %>
-  <%= @application.description %>
+<div class='center-div'> <br>
+<center>
+    <p>Name: <%= @application.name %><br></p>
+    <p>Address: <%= @application.address %><br>
+                <%= @application.city %>
+                <%= @application.state %>,
+                <%= @application.zip %><br></p>
+    <p>Phone Number: <%= @application.phone_number %><br></p>
+    <p>Applicant Description: <%= @application.description %><br></p>
 
-  <% @application.pets.each do |pet| %>
-  <%= link_to "#{pet.name}", "/pets/#{pet.id}" %>
-  <%end %>
+    <% @application.pets.each do |pet| %>
+    <p>Pets Applied For: <%= link_to "#{pet.name}", "/pets/#{pet.id}" %><br></p>
+    <%end %>
+  </center>
 </div>
