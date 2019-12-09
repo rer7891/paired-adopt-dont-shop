@@ -60,36 +60,21 @@ RSpec.describe "Favorites Index Page", type: :feature do
     end
 
     it "can see all applications for a certain pet" do
-      application_1 = @dog_1.applications.create!(name: "Becky Robran",
-                                                 address: "12342 Main Street",
-                                                 city: "Broomfield",
-                                                 state: "CO",
-                                                 zip: "34533",
-                                                 phone_number: "43253424324",
-                                                 description: "I will be a good dog parent.")
-
-       application_2 = @dog_1.applications.create!(name: "Linda Le",
-                                                    address: "12345 Union St",
-                                                    city: "Lakewood",
-                                                    state: "CO",
-                                                    zip: "80228",
-                                                    phone_number: "7201234567",
-                                                    description: "I love dogs.")
 
         visit "/pets/#{@dog_1.id}"
 
         expect(page).to have_link('View All Applications for this Pet')
         click_on('View All Applications for this Pet')
 
-        expect(page).to have_content(application_1.name)
-        expect(page).to have_content(application_2.name)
+        expect(page).to have_content(@application_1.name)
+        expect(page).to have_content(@application_2.name)
 
-        click_on("#{application_1.name}")
-        expect(current_path).to eql("/applications/#{application_1.id}")
+        click_on("#{@application_1.name}")
+        expect(current_path).to eql("/applications/#{@application_1.id}")
         visit "/pets/#{@dog_1.id}"
         click_on('View All Applications for this Pet')
-        click_on("#{application_2.name}")
-        expect(current_path).to eql("/applications/#{application_2.id}")
+        click_on("#{@application_2.name}")
+        expect(current_path).to eql("/applications/#{@application_2.id}")
     end
 
     it 'will show a no applications message if no applications for that pet' do
