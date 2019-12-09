@@ -62,5 +62,18 @@ RSpec.describe "As a visitor ", type: :feature do
       expect(page).to have_content(@dog_2.name)
       expect(page).to_not have_content(@dog.name)
     end
+
+    it 'can approve an application for that specific pet' do
+      visit "applications/#{@application_1.id}"
+
+      expect(page).to have_link("Approve Application for #{@dog_1.name}")
+      expect(page).to have_link("Approve Application for #{@dog_2.name}")
+
+      click_on("Approve Application for #{@dog_1.name}")
+      expect (current_path).to eql("/pets/#{@dog_1.id}")
+
+      expect("#{@dog_1.is_adoptable}").to eql("Pending")
+      expect(page).to have_content("On hold for Becky Robran")
+    end
   end
 end
