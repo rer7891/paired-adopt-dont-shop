@@ -18,7 +18,11 @@ class Pet < ApplicationRecord
   end
 
   def update_status
-    is_adoptable = false
+    if !is_adoptable
+      is_adoptable = true
+    else
+      is_adoptable = false
+    end 
   end
 
 end
