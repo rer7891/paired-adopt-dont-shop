@@ -121,6 +121,7 @@ RSpec.describe "As a visitor ", type: :feature do
 
       visit "/pets/#{@dog_1.id}"
       expect(page).to have_content("Status: Adoptable")
+      expect(page).to_not have_content("On hold for #{@application_1.name}")
 
     end
   end
