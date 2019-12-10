@@ -80,12 +80,12 @@ RSpec.describe 'as a user', type: :feature do
       click_on('Submit')
       expect(current_path).to eq "/pets/#{@dog_1.id}"
 
-      expect(page).to have_content('4 errors prohibited this pet from being saved:')
+      expect(page).to have_content('2 errors prohibited this pet from being saved:')
       expect(page).to have_content("Name can't be blank")
-      expect(page).to have_content("Approximate age can't be blank")
-      expect(page).to have_content('You have not filled in all the necessary fields to create a pet')
+      expect(page).to have_content("Description can't be blank")
+      expect(page).to have_content('You have not filled in all the necessary fields to edit the pet listing.')
       expect(page).to have_content("Name is required and must only contain letters")
-      expect(page).to have_content("Approximate age must be a number")
+
 
     end
   end
