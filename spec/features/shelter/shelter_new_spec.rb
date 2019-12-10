@@ -59,7 +59,7 @@ RSpec.describe 'Shelter new page', type: :feature do
       fill_in :zip_code, with: zip_code
       click_on 'Submit'
 
-      expect(page).to have_content('3 errors prohibited this pet from being saved:')
+      expect(page).to have_content('3 errors prohibited this shelter from being saved:')
       expect(page).to have_content("Address can't be blank")
       expect(page).to have_content("Zip code can't be blank")
       expect(page).to have_content('You have not filled in all the necessary fields to create a shelter.')
