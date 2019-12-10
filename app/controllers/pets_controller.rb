@@ -16,12 +16,19 @@ class PetsController < ApplicationController
 
   def new
     @shelter = Shelter.find(params[:id])
+    @pet = Pet.new(pet_params)
   end
 
   def create
-    shelter = Shelter.find(params[:id])
-    shelter.pets.create(pet_params)
-    redirect_to "/shelters/#{shelter.id}/pets"
+    @shelter = Shelter.find(params[:id])
+    @pet = @shelter.pets.create(pet_params)
+      if @pet.save
+        flash[:notice] = "You have successfully added this pet!"
+        redirect_to "/shelters/#{@shelter.id}/pets"
+      else
+        flash[:alert] = "You have not filled in all the necessary fields to create a pet"
+        render 'new'
+      end
   end
 
   def edit

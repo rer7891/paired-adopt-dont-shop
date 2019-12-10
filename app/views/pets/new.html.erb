@@ -1,5 +1,13 @@
 <h1> Add a New Pet for Adoption </h1>
 <%= form_tag "/shelters/#{@shelter.id}/pets", class:'center-form' do %>
+<% if @pet.errors.any? %>
+ <p class ='center-div'><%= pluralize(@pet.errors.count, "error") %> prohibited this pet from being saved:</p>
+      <ul>
+        <% @pet.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+      </ul>
+<% end %>
   <%= label_tag 'Add Image URL: ' %>
   <%= text_field_tag :image_url %><br/>
   <%= label_tag 'Name: ' %>
