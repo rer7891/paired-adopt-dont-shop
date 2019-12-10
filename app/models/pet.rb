@@ -6,11 +6,11 @@ class Pet < ApplicationRecord
 
   validates :shelter, presence: true
   validates :image_url, presence: true
-  validates :name, presence: true, format: { with: /\A[a-zA-Z ]+\z/ }
+  validates :name, presence: true, format: { with: /\A[a-zA-Z ]+\z/, message: "is required and must only contain letters"}
   validates :description, presence: true
   validates :sex, presence: true
   validates_inclusion_of :sex, in: %w( m f M F)
-  validates :approximate_age, presence: true, numericality: { only_integer: true }
+  validates :approximate_age, presence: true, numericality: { only_integer: true, message: "must be a number" }
   before_save :upcase_field
 
   def upcase_field
@@ -22,7 +22,7 @@ class Pet < ApplicationRecord
       is_adoptable = true
     else
       is_adoptable = false
-    end 
+    end
   end
 
 end
