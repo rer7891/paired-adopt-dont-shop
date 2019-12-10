@@ -12,12 +12,9 @@ class PetApplicationsController < ApplicationController
         pet_helper(pet)
         application_helper(application)
         redirect_to "/applications/#{application.id}"
-      elsif pet.is_adoptable
+      else pet.is_adoptable
         pet_helper(pet)
         application_helper(application)
-        redirect_to "/pets/#{pet.id}"
-      else
-        flash[:error] = "No more applications can be approved for this pet at this time."
         redirect_to "/pets/#{pet.id}"
       end
   end

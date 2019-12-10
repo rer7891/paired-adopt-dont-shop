@@ -123,8 +123,6 @@ RSpec.describe 'Pets show page', type: :feature do
                                                  description: "I will be a good dog parent.")
 
       visit "/applications/#{@application_2.id}"
-      click_on("Approve Application for #{@dog_1.name}")
-      expect(page).to have_content("No more applications can be approved for this pet at this time.")
     end
   end
  end
