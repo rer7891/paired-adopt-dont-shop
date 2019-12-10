@@ -9,7 +9,7 @@ class Application < ApplicationRecord
       approval_status = true
     else
       approval_status = false
-    end 
+    end
   end
 
 end
