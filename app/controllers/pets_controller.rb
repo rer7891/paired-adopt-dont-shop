@@ -35,8 +35,19 @@ class PetsController < ApplicationController
   end
 
   def destroy
-    Pet.destroy(params[:id])
-    redirect_to '/pets'
+    pet = Pet.find(params[:id])
+    if @favorites.include?(pet.id)
+      @favorites.favorite_delete([pet])
+      session[:favorite] = @favorites.content
+    end
+    if !pet.is_adoptable
+      flash[:error] = "This pet currently has a pending adoption and cannot be removed at this time."
+      redirect_to "/pets/#{pet.id}"
+    else
+      Pet.destroy(pet.id)
+      redirect_to '/pets'
+    end
+
   end
 
   private
