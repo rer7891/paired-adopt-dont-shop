@@ -27,9 +27,15 @@ class SheltersController < ApplicationController
   end
 
   def update
-    shelter = Shelter.find(params[:id])
-    shelter.update(shelter_params)
-    redirect_to "/shelters/#{shelter.id}"
+    @shelter = Shelter.find(params[:id])
+    @shelter.update(shelter_params)
+    if @shelter.save
+      flash[:notice] = "You have successfully edited this shelter listing!"
+      redirect_to "/shelters/#{@shelter.id}"
+    else
+      flash[:alert] = "You have not filled in all the necessary fields to edit the shelter listing."
+      render 'edit'
+    end
   end
 
   def destroy

@@ -2,6 +2,14 @@
 <div class='center-form'>
 <h2> Edit the following information: </h2>
 <%= form_tag "/shelters/#{@shelter.id}", method: 'patch' do %>
+<% if @shelter.errors.any? %>
+ <p class ='center-div'><%= pluralize(@shelter.errors.count, "error") %> prohibited this shelter from being saved:</p>
+      <ul>
+        <% @shelter.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+      </ul>
+<% end %>
   <%= label_tag 'Name: ' %>
   <%= text_field_tag :name, @shelter.name %><br/>
   <%= label_tag 'Address: ' %>
