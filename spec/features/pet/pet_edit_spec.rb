@@ -58,5 +58,35 @@ RSpec.describe 'as a user', type: :feature do
       expect(page).to have_content('Sweet terrier mix who would love a quieter home.')
 
     end
+
+    it 'can see a flash message listing missing fields if new pet form is incomplete' do
+
+      visit "pets/#{@dog_1.id}"
+
+      click_on 'Edit Pet'
+      assert_equal "/pets/#{@dog_1.id}/edit", current_path
+
+      expect(page).to have_field('name')
+      expect(page).to have_field('image_url')
+      expect(page).to have_field('description')
+      expect(page).to have_field('approximate_age')
+      expect(page).to have_field('sex')
+
+      fill_in 'name',      with: ''
+      fill_in 'description',   with: ''
+
+      expect(page).to have_button('Submit')
+
+      click_on('Submit')
+      expect(current_path).to eq "/pets/#{@dog_1.id}"
+
+      expect(page).to have_content('4 errors prohibited this pet from being saved:')
+      expect(page).to have_content("Name can't be blank")
+      expect(page).to have_content("Approximate age can't be blank")
+      expect(page).to have_content('You have not filled in all the necessary fields to create a pet')
+      expect(page).to have_content("Name is required and must only contain letters")
+      expect(page).to have_content("Approximate age must be a number")
+
+    end
   end
 end
