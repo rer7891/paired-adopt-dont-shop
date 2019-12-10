@@ -37,7 +37,7 @@ RSpec.describe "As a visitor when I visit /favorites", type: :feature do
    end
       it "where I can select multiple pets and fill in personal details" do
         visit "/applications/new"
-    
+
         page.check "#{@dog_1.id}"
 
         fill_in 'name',         with: "Becky Robran"
@@ -66,6 +66,23 @@ RSpec.describe "As a visitor when I visit /favorites", type: :feature do
         end
         expect(page).to have_content("Your application was received!")
 
+      end
+      it "where I can see error messages about which fields are missing in app" do
+        visit "/applications/new"
+
+        page.check "#{@dog_1.id}"
+
+        fill_in 'name',         with: ""
+        fill_in 'address',      with: '123 Main Street'
+        fill_in 'city',         with: 'Lakewood'
+        fill_in 'state',        with: 'CO'
+        fill_in 'zip',          with: 80023
+        fill_in 'phone_number',  with: '423-316-2121'
+        fill_in 'description' ,  with: 'Loving and work from home. I would give a great home.'
+        click_button 'Submit Application'
+
+        expect(page).to have_content("You have not filled out all necessary fields")
+        expect(current_path).to eql("/applications/new")
       end
   end
 end

@@ -56,6 +56,7 @@ describe Favorite do
       expect(favorites.keys).to eql([dog_1.id.to_s])
       expect(favorites.include?("#{dog_1.id}")).to eql(true)
       expect(favorites.include?("#{dog.id}")).to eql(false)
+      expect(favorites.favorite_count).to eql(1)
     end
   end
 end

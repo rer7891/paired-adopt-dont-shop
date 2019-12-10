@@ -37,9 +37,8 @@ RSpec.describe "As a visitor", type: :feature do
 
           expect(current_path).to eql("/pets/#{dog_1.id}")
           expect(page).to have_content("Favorites: (0)")
+
           expect(page).to have_content("You have removed this pet from favorites.")
-      end
-      it "and the favorites indicator has decrimented by 1" do
       end
     end
   end
