@@ -110,6 +110,10 @@ li.active a {
   float: left;
 }
 
+.center {
+  float :center;
+}
+
 .center-div p {
   margin: 20px auto;
   width: 500px;

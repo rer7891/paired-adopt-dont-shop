@@ -16,13 +16,13 @@
       <% end %> </p>
   <% end %>
 
-<p><%= link_to 'Edit Pet', "/pets/#{@pet.id}/edit" %><br>
-<%= link_to 'Delete Pet', "/pets/#{@pet.id}", method: :delete %><br>
+<p class = 'center'><%= link_to 'Edit Pet', "/pets/#{@pet.id}/edit" %>
+<p class = 'center'><%= link_to 'Delete Pet', "/pets/#{@pet.id}", method: :delete %>
 <% if !@favorites.include?(@pet.id.to_s) %>
-  <%= link_to 'Favorite This Pet', "/favorites/#{@pet.id}", method: :patch %><br>
+<p class ='center'>  <%= link_to 'Favorite This Pet', "/favorites/#{@pet.id}", method: :patch %></p>
 <%else%>
-  <%= link_to 'Delete This Pet From Favorites', "/favorites/#{@pet.id}", method: :delete %><br>
+  <p class ='center'><%= link_to 'Delete This Pet From Favorites', "/favorites/#{@pet.id}", method: :delete %></p>
 <%end%>
-<%= link_to 'View All Applications for this Pet', "/pets/#{@pet.id}/applications" %>
+<p class = 'center'><%= link_to 'View All Applications for this Pet', "/pets/#{@pet.id}/applications" %></p>
 
 </div>
