@@ -62,7 +62,36 @@ RSpec.describe 'As a visitor', type: :feature do
 
       expect(page).to have_content('Shelter Example 1')
       expect(page).to have_content('987 Colorado Boulevard')
+      expect(page).to have_content('You have successfully edited this shelter listing!')
 
+    end
+
+    it 'can see error messages for what fields are missing when editing a listing' do
+
+      visit "/shelters/#{@shelter_1.id}"
+
+      expect(page).to have_link('Update This Shelter')
+
+      click_link 'Update This Shelter'
+      expect(current_path).to eq "/shelters/#{@shelter_1.id}/edit"
+
+      expect(page).to have_field('name')
+      expect(page).to have_field('address')
+      expect(page).to have_field('city')
+      expect(page).to have_field('state')
+      expect(page).to have_field('zip_code')
+
+      fill_in 'address',      with: ''
+      fill_in 'state',   with: ''
+
+      expect(page).to have_button('Submit')
+
+      click_on('Submit')
+
+      expect(page).to have_content('2 errors prohibited this shelter from being saved:')
+      expect(page).to have_content("Address can't be blank")
+      expect(page).to have_content("State can't be blank")
+      expect(page).to have_content("You have not filled in all the necessary fields to edit the shelter listing.")
     end
   end
 end

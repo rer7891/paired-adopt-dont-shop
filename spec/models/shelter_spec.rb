@@ -33,8 +33,13 @@ describe Shelter, type: :model do
     it {should validate_presence_of :state}
 
     it {should validate_presence_of :zip_code}
-    it {should validate_length_of(:zip_code).is_equal_to(5) }
     it {should_not allow_value("80").for(:zip_code) }
+
+    it {should validate_presence_of(:name).with_message("can't be blank")}
+    it {should validate_presence_of(:address).with_message("can't be blank")}
+    it {should validate_presence_of(:city).with_message("can't be blank")}
+    it {should validate_presence_of(:state).with_message("can't be blank")}
+    it {should validate_presence_of(:zip_code).with_message("is not valid - please enter a 5 digit zip code")}
   end
 
   describe 'relationships' do

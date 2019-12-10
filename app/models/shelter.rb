@@ -8,7 +8,7 @@ class Shelter < ApplicationRecord
   validates :address, presence: true
   validates :city, presence: true
   validates :state, presence: true
-  validates :zip_code, presence: true, :length => { :is => 5 }
+  validates :zip_code, presence: true, :length => { :is => 5, message: "is not valid - please enter a 5 digit zip code"}
 
   def count_pets
     pets.length

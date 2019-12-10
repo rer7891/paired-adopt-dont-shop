@@ -44,5 +44,28 @@ RSpec.describe 'Shelter new page', type: :feature do
       expect(page).to have_content ('Adoptable')
 
     end
+
+    it 'can see a flash message listing missing fields if new pet form is incomplete' do
+
+      visit "/shelters/#{@shelter_1.id}/pets"
+
+      click_on('Add New Pet for Adoption')
+      assert_equal "/shelters/#{@shelter_1.id}/pets/new", current_path
+
+      fill_in 'image_url',        with: "https://d17fnq9dkz9hgj.cloudfront.net/breed-uploads/2018/08/shiba-inu-detail.jpg"
+      fill_in 'name',             with: ''
+      fill_in 'description',      with: 'Loving Shiba Inu Mix who enjoys chilling at home.'
+      fill_in 'approximate_age',  with: ''
+      fill_in 'sex',              with: 'F'
+      click_button 'Submit'
+
+      expect(page).to have_content('4 errors prohibited this pet from being saved:')
+      expect(page).to have_content("Name can't be blank")
+      expect(page).to have_content("Approximate age can't be blank")
+      expect(page).to have_content('You have not filled in all the necessary fields to create a pet')
+      expect(page).to have_content("Name is required and must only contain letters")
+      expect(page).to have_content("Approximate age must be a number")
+
+    end
   end
 end

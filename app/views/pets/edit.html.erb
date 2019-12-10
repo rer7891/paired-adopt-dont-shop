@@ -1,6 +1,13 @@
 <h1> Edit Pet Listing </h1>
 <h2><%= link_to 'Delete Pet', "/pets/#{@pet.id}", method: :delete %></h2>
-
+<% if @pet.errors.any? %>
+ <p class ='center-div'><%= pluralize(@pet.errors.count, "error") %> prohibited this pet from being saved:</p>
+      <ul>
+        <% @pet.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+      </ul>
+<% end %>
 <div class='center-form'>
 <h2> Edit the following information: </h2>
 <%= form_tag "/pets/#{@pet.id}", method: 'patch' do %>
