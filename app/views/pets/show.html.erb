@@ -19,7 +19,7 @@
 <p><%= link_to 'Edit Pet', "/pets/#{@pet.id}/edit" %><br>
 <%= link_to 'Delete Pet', "/pets/#{@pet.id}", method: :delete %><br>
 <% if !@favorites.include?(@pet.id.to_s) %>
-  <%= link_to 'Favorite This Pet', "/favorites/#{@pet.id}", method: :patch %><br>
+<p>  <%= link_to 'Favorite This Pet', "/favorites/#{@pet.id}", method: :patch %><br></p>
 <%else%>
   <%= link_to 'Delete This Pet From Favorites', "/favorites/#{@pet.id}", method: :delete %><br>
 <%end%>
