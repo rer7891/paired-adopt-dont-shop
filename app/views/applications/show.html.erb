@@ -9,7 +9,11 @@
   <p><%= @application.description %></p>
   <h2> Pet(s) on Application</h2>
   <% @application.pets.each do |pet| %>
-  <p><%= link_to "#{pet.name}", "/pets/#{pet.id}" %></p>
-  <p><%= link_to "Approve Application for #{pet.name}", "/pets/#{pet.id}/#{@application.id}/pet_applications?is_adoptable=#{pet.is_adoptable}&approval_status=#{@application.approval_status}", method: :patch %></p>
-  <%end %>
+  <%= link_to "#{pet.name}", "/pets/#{pet.id}" %>
+  <% if !pet.is_adoptable %>
+    <%= link_to "Revoke Approved Application for #{pet.name}", "/pets/#{pet.id}/#{@application.id}/pet_applications?is_adoptable=#{pet.is_adoptable}&revoke=#{@application.approval_status}", method: :patch %>
+    <% else %>
+  <%= link_to "Approve Application for #{pet.name}", "/pets/#{pet.id}/#{@application.id}/pet_applications?is_adoptable=#{pet.is_adoptable}&approval_status=#{@application.approval_status}", method: :patch %>
+  <% end %>
+  <% end %>
 </div>

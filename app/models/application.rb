@@ -5,7 +5,11 @@ class Application < ApplicationRecord
   validates_presence_of :name, :address, :city, :state, :zip, :phone_number, :description
 
   def update_approval_status
-    approval_status = true
+    if !approval_status
+      approval_status = true
+    else
+      approval_status = false
+    end 
   end
 
 end

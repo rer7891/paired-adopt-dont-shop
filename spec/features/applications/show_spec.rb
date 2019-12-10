@@ -88,5 +88,41 @@ RSpec.describe "As a visitor ", type: :feature do
       expect(page).to_not have_content("Linda Le")
 
     end
+
+    it "cannot see a link to approve an application and see link to unapprove after an application for that pet is approved" do
+      visit "/applications/#{@application_1.id}"
+
+      expect(page).to have_link("Approve Application for #{@dog_1.name}")
+      expect(page).to have_link("Approve Application for #{@dog_2.name}")
+
+      click_on("Approve Application for #{@dog_1.name}")
+
+      expect(page).to_not have_link("Approve Application for #{@dog_1.name}")
+      expect(page).to_not have_link("Approve Application for #{@dog_2.name}")
+
+      visit "/applications/#{@application_1.id}"
+      expect(page).to have_link("Revoke Approved Application for #{@dog_1.name}")
+      expect(page).to_not have_link("Revoke Approved Application for #{@dog_2.name}")
+    end
+
+    it "can revoke approval of an application for a specific pet" do
+
+      visit "/applications/#{@application_1.id}"
+
+      click_on("Approve Application for #{@dog_1.name}")
+
+      visit "/applications/#{@application_1.id}"
+
+      expect(page).to have_link("Revoke Approved Application for #{@dog_1.name}")
+      click_on ("Revoke Approved Application for #{@dog_1.name}")
+
+      expect(current_path).to eql("/applications/#{@application_1.id}")
+      expect(page).to have_link("Approve Application for #{@dog_1.name}")
+
+      visit "/pets/#{@dog_1.id}"
+      expect(page).to have_content("Status: Adoptable")
+      expect(page).to_not have_content("On hold for #{@application_1.name}")
+
+    end
   end
 end
