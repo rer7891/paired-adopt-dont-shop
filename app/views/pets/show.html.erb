@@ -21,7 +21,7 @@
 <% if !@favorites.include?(@pet.id.to_s) %>
 <p class ='center'>  <%= link_to 'Favorite This Pet', "/favorites/#{@pet.id}", method: :patch %></p>
 <%else%>
-  <p class ='center>'<%= link_to 'Delete This Pet From Favorites', "/favorites/#{@pet.id}", method: :delete %></p>
+  <p class ='center'><%= link_to 'Delete This Pet From Favorites', "/favorites/#{@pet.id}", method: :delete %></p>
 <%end%>
 <p class = 'center'><%= link_to 'View All Applications for this Pet', "/pets/#{@pet.id}/applications" %></p>
 
