@@ -99,8 +99,10 @@ RSpec.describe "As a visitor ", type: :feature do
 
       expect(page).to_not have_link("Approve Application for #{@dog_1.name}")
       expect(page).to_not have_link("Approve Application for #{@dog_2.name}")
+
+      visit "/applications/#{@application_1.id}"
       expect(page).to have_link("Revoke Approved Application for #{@dog_1.name}")
-      expect(page).to have_link("Revoke Approved Application for #{@dog_2.name}")
+      expect(page).to_not have_link("Revoke Approved Application for #{@dog_2.name}")
     end
 
     it "can revoke approval of an application for a specific pet" do
@@ -118,8 +120,8 @@ RSpec.describe "As a visitor ", type: :feature do
       expect(page).to have_link("Approve Application for #{@dog_1.name}")
 
       visit "/pets/#{@dog_1.id}"
-      expect(page).to have_content("Status: Adoption Pending")
+      expect(page).to have_content("Status: Adoptable")
 
     end
-  end 
+  end
 end
