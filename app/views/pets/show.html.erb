@@ -10,11 +10,11 @@
 <% else %>
   <p>Status: Adoption Pending</p>
 <% end %>
-<p> <% @pet.applications.each do |app| %>
+<% @pet.applications.each do |app| %>
     <% if app.approval_status %>
-    On hold for <%= app.name %>
-      <% end %> </p>
-  <% end %>
+  <p>On hold for <%= link_to app.name, "/applications/#{app.id}" %> </p>
+    <% end %>
+<% end %>
 
 <p class = 'center'><%= link_to 'Edit Pet', "/pets/#{@pet.id}/edit" %>
 <p class = 'center'><%= link_to 'Delete Pet', "/pets/#{@pet.id}", method: :delete %>

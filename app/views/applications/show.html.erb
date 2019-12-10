@@ -1,15 +1,15 @@
 <h1>All Pending Applications</h1>
 <div class='center-div'>
-  <%= @application.name %>
-  <%= @application.address %>
-  <%= @application.city %>
-  <%= @application.state %>
-  <%= @application.zip %>
-  <%= @application.phone_number %>
-  <%= @application.description %>
-
+  <p><%= @application.name %></p>
+  <p><%= @application.address %></p>
+  <p><%= @application.city %></p>
+  <p><%= @application.state %> </p>
+  <p><%= @application.zip %> </p>
+  <p><%= @application.phone_number %> </p>
+  <p><%= @application.description %></p>
+  <h2> Pet(s) on Application</h2>
   <% @application.pets.each do |pet| %>
-  <%= link_to "#{pet.name}", "/pets/#{pet.id}" %>
-  <%= link_to "Approve Application for #{pet.name}", "/pets/#{pet.id}/#{@application.id}/pet_applications?is_adoptable=#{pet.is_adoptable}&approval_status=#{@application.approval_status}", method: :patch %>
+  <p><%= link_to "#{pet.name}", "/pets/#{pet.id}" %></p>
+  <p><%= link_to "Approve Application for #{pet.name}", "/pets/#{pet.id}/#{@application.id}/pet_applications?is_adoptable=#{pet.is_adoptable}&approval_status=#{@application.approval_status}", method: :patch %></p>
   <%end %>
 </div>

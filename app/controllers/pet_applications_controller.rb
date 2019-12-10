@@ -9,12 +9,10 @@ class PetApplicationsController < ApplicationController
     pet = Pet.find(params[:id])
     application = Application.find(params[:application_id])
       if pet.is_adoptable
-        params[:is_adoptable] = pet.update_status
         params[:approval_status] = application.update_approval_status
+        params[:is_adoptable] = pet.update_status
         pet.update(pet_params)
-        pet.save
         application.update(app_params)
-        application.save
         redirect_to "/pets/#{pet.id}"
       else
         flash[:error] = "No more applications can be approved for this pet at this time."
