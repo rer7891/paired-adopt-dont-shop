@@ -14,8 +14,16 @@ describe Shelter, type: :model do
                                      name: 'Tofu',
                                      approximate_age: 4,
                                      sex: 'M',
-                                     description: 'I am a neutered male, white Terrier Mix who loves to play fetch.'
+                                     description: 'I am a neutered male, white Terrier Mix who loves to play fetch.',
+                                     is_adoptable: false
                                      )
+    @application_1 = @dog_1.applications.create!(name: "Becky Robran",
+                                              address: "12342 Main Street",
+                                              city: "Broomfield",
+                                              state: "CO",
+                                              zip: "34533",
+                                              phone_number: "43253424324",
+                                              description: "I will be a good dog parent.")
   end
 
   describe 'validations' do
@@ -37,6 +45,10 @@ describe Shelter, type: :model do
   describe 'methods'do
   it ".count_pets will count how many pets are at that shelter" do
     expect(@shelter_1.count_pets).to eq 1
+  end
+  it "Does shelter have pets that have an application" do
+
+    expect(@shelter_1.adoptable_pets?).to eql(true)
   end
 
   end

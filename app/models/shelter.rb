@@ -14,4 +14,7 @@ class Shelter < ApplicationRecord
     pets.length
   end
 
+  def adoptable_pets?
+    pets.any? {|pet| pet.is_adoptable == false }
+  end
 end

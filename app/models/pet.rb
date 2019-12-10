@@ -22,7 +22,7 @@ class Pet < ApplicationRecord
       is_adoptable = true
     else
       is_adoptable = false
-    end 
+    end
   end
 
 end
