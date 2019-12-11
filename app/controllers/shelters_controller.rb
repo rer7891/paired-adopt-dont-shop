@@ -9,7 +9,7 @@ class SheltersController < ApplicationController
       flash[:notice] = "You have successfully added this shelter."
       redirect_to "/shelters"
     else
-      flash[:notice] = "You have not filled in all the necessary fields to create a shelter."
+      flash.now[:notice] = "You have not filled in all the necessary fields to create a shelter."
       render :new
     end
   end
@@ -40,11 +40,12 @@ class SheltersController < ApplicationController
 
   def destroy
     shelter = Shelter.find(params[:id])
-    if shelter.adoptable_pets? 
+    if shelter.adoptable_pets?
       flash[:message] = "This shelter has pets with adoptions pending. You cannot delete it at this moment."
       redirect_to "/shelters/#{shelter.id}"
     else
       Shelter.destroy(params[:id])
+      flash[:message] = "This shelter has been successfully removed."
       redirect_to '/shelters'
     end
   end

@@ -15,11 +15,12 @@ RSpec.describe "As a visitor", type: :feature do
 
         expect(current_path).to eql("/shelters/#{shelter_1.id}/reviews/new")
 
-        fill_in "Title",     with: "Best New Shelter"
+        fill_in :title,     with: "Best New Shelter"
         select('4', :from => 'Rating')
-        fill_in "Content",   with: "A brand new facility that is first rate. Their staff is friendly and helpful."
-        fill_in "image_url", with: "https://picsum.photos/id/200/1920/1280"
-        click_on "Create A New Review"
+        fill_in :content,   with: "A brand new facility that is first rate. Their staff is friendly and helpful."
+        fill_in :image_url, with: "https://picsum.photos/id/200/1920/1280"
+        find('#review-button', :visible => false).click
+
 
         expect(current_path).to eql("/shelters/#{shelter_1.id}")
 
@@ -44,9 +45,9 @@ RSpec.describe "As a visitor", type: :feature do
         expect(current_path).to eql("/shelters/#{shelter_1.id}/reviews/new")
 
         #There is no title or rating filled in.
-        fill_in "Content",   with: "A brand new facility that is first rate. Their staff is friendly and helpful."
-        fill_in "image_url", with: "https://picsum.photos/id/200/1920/1280"
-        click_on "Create A New Review"
+        fill_in :content,   with: "A brand new facility that is first rate. Their staff is friendly and helpful."
+        fill_in :image_url, with: "https://picsum.photos/id/200/1920/1280"
+        find('#review-button', :visible => false).click
 
         expect(current_path).to eql("/shelters/#{shelter_1.id}/reviews/new")
         expect(page).to have_content( "You have not filled in all the necessary fields to create a review.")

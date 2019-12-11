@@ -1,25 +1,16 @@
 <h1> Add a New Shelter Listing </h1>
-<div class='center-form'>
-<h2> Enter the following information: </h2>
-<%= form_tag '/shelters' do %>
+<div class='error-div'>
+<%= render "shared/flash" %>
 <% if @shelter.errors.any? %>
- <p class ='center-div'><%= pluralize(@shelter.errors.count, "error") %> prohibited this shelter from being saved:</p>
-      <ul>
-        <% @shelter.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-        <% end %>
-      </ul>
-<% end %>
-  <%= label_tag 'Name: '%>
-  <%= text_field_tag :name %><br/>
-  <%= label_tag 'Address :' %>
-  <%= text_field_tag :address %><br/>
-  <%= label_tag 'City: '%>
-  <%= text_field_tag :city %><br/>
-  <%= label_tag 'State: ' %>
-  <%= text_field_tag :state %><br/>
-  <%= label_tag 'Zip Code: '%>
-  <%= text_field_tag :zip_code %><br/>
-<%= submit_tag 'Submit' %>
-<% end %>
+   <p><%= pluralize(@shelter.errors.count, "error") %> prohibited this shelter from being saved:</p>
+        <ul>
+          <% @shelter.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+          <% end %>
+        </ul>
+  <% end %></div>
+<div class='form-style'>
+<legend><h2> Enter the following information: <legend></h2>
+  <%= render partial: 'form', locals: {path: "/shelters",
+  method: :post, button_text: 'Submit'}%>
 </div>

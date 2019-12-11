@@ -1,23 +1,16 @@
 <h1> Add a New Pet for Adoption </h1>
-<%= form_tag "/shelters/#{@shelter.id}/pets", class:'center-form' do %>
+<div class='error-div'>
+  <%= render "shared/flash" %>
 <% if @pet.errors.any? %>
- <p class ='center-div'><%= pluralize(@pet.errors.count, "error") %> prohibited this pet from being saved:</p>
+ <p><%= pluralize(@pet.errors.count, "error") %> prohibited this pet from being saved:</p>
       <ul>
         <% @pet.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
         <% end %>
       </ul>
-<% end %>
-  <%= label_tag 'Add Image URL: ' %>
-  <%= text_field_tag :image_url %><br/>
-  <%= label_tag 'Name: ' %>
-  <%= text_field_tag :name %><br/>
-  <%= label_tag 'Description: ' %>
-  <%= text_area_tag :description, nil, size: '30x3' %><br/>
-  <%= label_tag 'Approximate Age: ' %>
-  <%= text_field_tag :approximate_age %><br/>
-  <%= label_tag 'Gender (M or F): ' %>
-  <%= text_field_tag :sex %><br/>
-<p><%= submit_tag 'Submit' %></p>
+<% end %></div>
+<div class='form-style'>
+<legend><h2> Edit the following information: </h2><legend>
+<%= render partial: 'form', locals: {path: "/shelters/#{@shelter.id}/pets",
+method: :post, button_text: 'Submit'}%>
 </div>
-<% end %>

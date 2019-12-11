@@ -1,22 +1,25 @@
 <h1><%= @shelter.name %></h1>
-<h2><%= link_to 'Adoptable Pets', "/shelters/#{@shelter.id}/pets"%></h2>
+<div class='error-div'>
+  <%= render "shared/flash" %>
+</div>
 <div class='center-div'>
-
-<p>Address: <%= @shelter.address %></p>
-<p>City: <%= @shelter.city %></p>
-<p>State: <%= @shelter.state %></p>
-<p>Zip Code: <%= @shelter.zip_code %></p>
+<h2><%= link_to 'See All Adoptable Pets', "/shelters/#{@shelter.id}/pets"%></h2>
+<p>Address: <%= @shelter.address %></br>
+City: <%= @shelter.city %></br>
+State: <%= @shelter.state %></br>
+Zip Code: <%= @shelter.zip_code %></p>
 
 <section>
-<p><%=@shelter.name%> has <%=@shelter.application_count%> applications on file.</p>
-<p><%= link_to 'Update This Shelter', "/shelters/#{@shelter.id}/edit", class: 'button-left'%></p>
-<p><%= link_to 'Delete This Shelter', "/shelters/#{@shelter.id}", method: :delete, class: 'button-right' %></p>
+<p><%=@shelter.name%> is currently housing <%= @shelter.count_pets %> pets.</br>
+<%=@shelter.name%> has <%=@shelter.application_count%> applications on file.</br>
+<%=@shelter.name%> has an average review rating of <%=@shelter.review_ave %>%.</p>
+<p><%= link_to 'Update This Shelter', "/shelters/#{@shelter.id}/edit"%></br>
+<%= link_to 'Delete This Shelter', "/shelters/#{@shelter.id}", method: :delete %></p>
 </section>
 
 </div></br>
 
 <h2><%= link_to 'Create A New Review', "/shelters/#{@shelter.id}/reviews/new"%></h2>
-<p><center><%=@shelter.name%> has an average review rating of <%=@shelter.review_ave %>%</center></p>
 
   <% @shelter.reviews.each do |review| %>
     <section id=reviews<%"#{review.id}"%>
