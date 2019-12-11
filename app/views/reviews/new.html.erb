@@ -1,4 +1,7 @@
-<h1> Add a New Review </h1>
+<h1> Add a New Review </h1
+<div class='error-div'>
+  <%= render "shared/flash" %>
+</div>
 <div class='center-form'>
 <h2> Enter the following information: </h2>
   <%= form_tag "/shelters/#{params[:id]}/reviews" do %>
