@@ -95,6 +95,10 @@ li.active a {
   border-radius: 30px;
 }
 
+.black-text {
+  color: #000000;
+
+}
 .button-right {
   float: right;
 }
@@ -205,4 +209,7 @@ li.active a {
 .form-style input[type="button"]:hover
 {
 	background: #109177;
+}
+.stars{
+  color: #FF0;
 }

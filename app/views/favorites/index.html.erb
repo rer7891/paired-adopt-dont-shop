@@ -23,7 +23,7 @@
 <div class='center-div'>
   <% @pets.each do |pet| %>
     <%if !pet.applications.empty? %>
-    <p id=application-<%=pet.id%> > <%= link_to "#{pet.name}", "/pets/#{pet.id}" %> </p>
+    <p id=application-<%=pet.id%> > <%= link_to "#{pet.name}", "/pets/#{pet.id}" %> </>
     <p> <%= image_tag("#{pet.image_url}", {:style => "width:300px;"}) %></p>
     <%end  %>
   <% end %>
