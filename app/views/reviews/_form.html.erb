@@ -4,9 +4,9 @@
 <%= label_tag :rating %>
 <%= select_tag :rating, (raw('<option value = 1 > 1 </option>, <option value = 2 > 2 </option>,
                             <option value = 3 > 3 </option>, <option value = 4 > 4 </option>, <option value = 5 > 5 </option>' )) %> </br>
-<%= label_tag :content %>
-<%= text_field_tag :content, @review.content %><br/>
-<%= label_tag 'Image URL' %>
+<%= label_tag 'Share Your Experience' %>
+<%= text_area_tag :content, @review.content %><br/>
+<%= label_tag 'Link to Image' %>
 <%= text_field_tag :image_url, @review.image_url%><br/>
 <%= submit_tag button_text, :id => "review-button" %>
 <% end %>
