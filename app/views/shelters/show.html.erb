@@ -1,15 +1,22 @@
 <h1><%= @shelter.name %></h1>
 <h2><%= link_to 'Adoptable Pets', "/shelters/#{@shelter.id}/pets"%></h2>
 <div class='center-div'>
+
 <p>Address: <%= @shelter.address %></p>
 <p>City: <%= @shelter.city %></p>
 <p>State: <%= @shelter.state %></p>
 <p>Zip Code: <%= @shelter.zip_code %></p>
-<%= link_to 'Update This Shelter', "/shelters/#{@shelter.id}/edit", class: 'button-left'%>
-<%= link_to 'Delete This Shelter', "/shelters/#{@shelter.id}", method: :delete, class: 'button-right' %>
+
+<section>
+<p><%=@shelter.name%> has <%=@shelter.application_count%> applications on file.</p>
+<p><%= link_to 'Update This Shelter', "/shelters/#{@shelter.id}/edit", class: 'button-left'%></p>
+<p><%= link_to 'Delete This Shelter', "/shelters/#{@shelter.id}", method: :delete, class: 'button-right' %></p>
+</section>
+
 </div></br>
 
 <h2><%= link_to 'Create A New Review', "/shelters/#{@shelter.id}/reviews/new"%></h2>
+<p><center><%=@shelter.name%> has an average review rating of <%=@shelter.review_ave %>%</center></p>
 
   <% @shelter.reviews.each do |review| %>
     <section id=reviews<%"#{review.id}"%>
@@ -19,11 +26,11 @@
       <h3><%= review.rating %> stars</h3>
       <p> <b> Review: </b> <%= review.content %></p>
         <% if "#{review.image_url}".present? %>
-              <p>  <%= image_tag("#{review.image_url}", {:style => "width:60%; height: 175px;"}) %> </p>
-        <% else %>
-              <p>  </p>
+              <p>  <%= image_tag("#{review.image_url}", {:style => "width:300px;"}) %> </p>
         <% end %>
+
       <p><%= link_to 'Edit This Review', "/reviews/#{review.id}/edit"%></p>
       <p><%= link_to 'Delete This Review', "/reviews/#{review.id}", method: :delete%></p>
-    </section></div>
+    </section>
  <%end%>
+</div>
