@@ -1,4 +1,7 @@
 <h1> Edit Pet Listing </h1>
+<div class='error-div'>
+  <%= render "shared/flash" %>
+</div>
 <h2><%= link_to 'Delete Pet', "/pets/#{@pet.id}", method: :delete %></h2>
 <% if @pet.errors.any? %>
  <p class ='center-div'><%= pluralize(@pet.errors.count, "error") %> prohibited this pet from being saved:</p>

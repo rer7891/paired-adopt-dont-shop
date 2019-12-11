@@ -1,5 +1,7 @@
 <h1> Adopt Don't Shop: Pet List </h1>
-
+<div class='error-div'>
+  <%= render "shared/flash" %>
+</div>
 <% @pets.each do |pet| %>
 <div class='center-div'>
   <%= image_tag("#{pet.image_url}", {:style => "width:250px;"}) %>

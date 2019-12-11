@@ -1,3 +1,6 @@
+<div class='error-div'>
+  <%= render "shared/flash" %>
+</div>
 <%= form_tag "/applications" do %>
   <% @pets.each do |pet| %>
     <%= check_box_tag("#{pet.id}","#{pet.name}") %>

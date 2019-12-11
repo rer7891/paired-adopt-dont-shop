@@ -1,4 +1,7 @@
 <h1> Edit This Review </h1>
+<div class='error-div'>
+  <%= render "shared/flash" %>
+</div>
 <div class='center-form'>
 <h2> Edit the following information: </h2>
 <%= form_tag "/reviews/#{@review.id}", method: :patch do %>

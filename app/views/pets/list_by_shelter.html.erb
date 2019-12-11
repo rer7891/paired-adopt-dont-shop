@@ -1,4 +1,7 @@
 <h1>Pets At <%=@shelter.name %></h1>
+<div class='error-div'>
+  <%= render "shared/flash" %>
+</div>
 <h2><%= link_to 'Add New Pet for Adoption', "/shelters/#{@shelter.id}/pets/new" %></h2>
 <h3> Number of Pets Available: <%= @shelter.count_pets %></h3>
 <% @pets.each do |pet| %>

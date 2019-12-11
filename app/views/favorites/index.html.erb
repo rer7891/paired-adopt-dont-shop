@@ -1,4 +1,7 @@
 <h1> My Favorite Pets </h1>
+<div class='error-div'>
+  <%= render "shared/flash" %>
+</div>
 <% if @favorites.content.empty? == true %>
   <h2> You have not selected any favorite pets yet! </h2>
 <% else %>

@@ -1,4 +1,7 @@
 <h1> Add a New Pet for Adoption </h1>
+<div class='error-div'>
+  <%= render "shared/flash" %>
+</div>
 <%= form_tag "/shelters/#{@shelter.id}/pets", class:'center-form' do %>
 <% if @pet.errors.any? %>
  <p class ='center-div'><%= pluralize(@pet.errors.count, "error") %> prohibited this pet from being saved:</p>
