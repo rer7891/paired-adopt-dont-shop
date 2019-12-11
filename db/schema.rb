@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20191211200848) do
     t.string "sex", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "is_adoptable", default: true
+    t.boolean "is_adoptable", default: true, null: false
     t.integer "shelter_id"
     t.string "description", null: false
     t.boolean "favorite_status", default: false

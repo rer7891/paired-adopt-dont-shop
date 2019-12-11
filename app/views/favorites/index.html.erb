@@ -12,29 +12,29 @@
         <p> <%= image_tag("#{pet.image_url}", {:style => "width:300px;"}) %></p>
         <p id=delete<%="#{pet.id}"%> > <%= link_to 'Delete All Favorites', "/favorites/#{pet.id}", method: :delete %><br></p>
       <%end%>
+      <% end %>
+      <center>
+        <%= link_to "Apply To Adopt Pet(s)", "/applications/new" %>
+  </center> <br />
   <% end %>
-    <center>
-      <%= link_to "Apply To Adopt Pet(s)", "/applications/new" %>
-</center> <br />
-<% end %>
 </div>
-
   <h1> Pets with Applications Pending</h1>
 
-<div class='center-div'>
   <% @pets.each do |pet| %>
     <% if !pet.applications.empty? && pet.is_adoptable %>
+    <div class='center-div'>
       <p id=application-<%=pet.id%> > <%= link_to "#{pet.name}", "/pets/#{pet.id}" %> </p>
       <p> <%= image_tag("#{pet.image_url}", {:style => "width:300px;"}) %></p>
-    <%end  %>
+    <%end%>
+    </div>
   <% end %>
-</div>
-  <h1> Pets with Approved Pending</h1>
+
+<h1> Pets with Approved Pending</h1>
+<% @pets.each do |pet| %>
+<% if !pet.applications.empty? && !pet.is_adoptable %>
 <div class='center-div'>
-  <% @pets.each do |pet| %>
-  <% if !pet.applications.empty? && !pet.is_adoptable %>
-    <p id=application_approve-<%=pet.id%> > <%= link_to "#{pet.name}", "/pets/#{pet.id}" %> </p>
-    <p> <%= image_tag("#{pet.image_url}", {:style => "width:300px;"}) %></p>
-  <%end  %>
-  <% end  %>
+  <p id=application_approved-<%=pet.id%>> <%= link_to "#{pet.name}", "/pets/#{pet.id}" %> </p>
+  <p> <%= image_tag("#{pet.image_url}", {:style => "width:300px;"}) %></p>
+<%end%>
+<%end%>
 </div>
