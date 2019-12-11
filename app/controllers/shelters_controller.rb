@@ -9,7 +9,7 @@ class SheltersController < ApplicationController
       flash[:notice] = "You have successfully added this shelter."
       redirect_to "/shelters"
     else
-      flash[:notice] = "You have not filled in all the necessary fields to create a shelter."
+      flash.now[:notice] = "You have not filled in all the necessary fields to create a shelter."
       render :new
     end
   end

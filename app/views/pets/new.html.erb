@@ -2,7 +2,7 @@
 <div class='error-div'>
   <%= render "shared/flash" %>
 <% if @pet.errors.any? %>
- <p class ='center-div'><%= pluralize(@pet.errors.count, "error") %> prohibited this pet from being saved:</p>
+ <p><%= pluralize(@pet.errors.count, "error") %> prohibited this pet from being saved:</p>
       <ul>
         <% @pet.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
