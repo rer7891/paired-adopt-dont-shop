@@ -8,6 +8,7 @@
 <p>Zip Code: <%= @shelter.zip_code %></p>
 
 <section>
+<p><%=@shelter.name%> is currently housing <%= @shelter.count_pets %> pets. </p>
 <p><%=@shelter.name%> has <%=@shelter.application_count%> applications on file.</p>
 <p><%= link_to 'Update This Shelter', "/shelters/#{@shelter.id}/edit", class: 'button-left'%></p>
 <p><%= link_to 'Delete This Shelter', "/shelters/#{@shelter.id}", method: :delete, class: 'button-right' %></p>

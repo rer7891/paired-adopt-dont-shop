@@ -40,9 +40,11 @@ RSpec.describe 'Shelter show page', type: :feature do
 
     end
 
-    it 'can see all adoptable pets at that shelter and their attributes' do
+    it 'can see the total number of adoptable pets at that shelter, a list of them, and their attributes' do
 
       visit "/shelters/#{@shelter_1.id}"
+
+      expect(page).to have_content("#{@shelter_1.name} is currently housing #{@shelter_1.count_pets} pets.")
 
       expect(page).to have_link('Adoptable Pets', href:"/shelters/#{@shelter_1.id}/pets")
 
