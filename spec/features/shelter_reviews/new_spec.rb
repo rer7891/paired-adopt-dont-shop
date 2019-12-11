@@ -52,6 +52,29 @@ RSpec.describe "As a visitor", type: :feature do
         expect(current_path).to eql("/shelters/#{shelter_1.id}/reviews/new")
         expect(page).to have_content( "You have not filled in all the necessary fields to create a review.")
       end
+      it 'assigns a default picture to the review if none is provided.' do
+        shelter_1 = Shelter.create!(name: 'Denver Pet Shelter',
+                                   address: '123 Colfax Ave',
+                                   city: 'Denver',
+                                   state: 'CO',
+                                   zip_code: '80004')
+        visit "/shelters/#{shelter_1.id}"
+
+        click_link "Create A New Review"
+
+        expect(current_path).to eql("/shelters/#{shelter_1.id}/reviews/new")
+
+        fill_in :title,     with: "Best New Shelter"
+        select('4', :from => 'Rating')
+        fill_in :content,   with: "A brand new facility that is first rate. Their staff is friendly and helpful."
+        find('#review-button', :visible => false).click
+
+        expect(current_path).to eql("/shelters/#{shelter_1.id}")
+
+        review = Review.last
+        expect(review.image_url).to eql("https://naturewatch.org/files/uploads/o-ANIMAL-SHELTER-facebook.jpg")
+
+      end
     end
   end
 end
