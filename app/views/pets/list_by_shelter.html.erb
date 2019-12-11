@@ -3,7 +3,7 @@
   <%= render "shared/flash" %>
 </div>
 <h2><%= link_to 'Add New Pet for Adoption', "/shelters/#{@shelter.id}/pets/new" %></h2>
-<h3> Number of Pets Available: <%= @shelter.count_pets %></h3>
+<h2> Number of Pets Available: <%= @shelter.count_pets %></h2>
 <% @pets.each do |pet| %>
   <div class='center-div'>
   <%= image_tag("#{pet.image_url}", {:style => "width:250px;"}) %>
