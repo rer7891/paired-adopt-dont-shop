@@ -2,18 +2,9 @@
 <div class='error-div'>
   <%= render "shared/flash" %>
 </div>
-<div class='center-form'>
-<h2> Enter the following information: </h2>
-  <%= form_tag "/shelters/#{params[:id]}/reviews" do %>
-    <%= label_tag :title %>
-    <%= text_field_tag :title %> </br>
-    <%= label_tag :rating %>
-    <%= select_tag :rating,(raw('<option value = 1 > 1 </option>, <option value = 2 > 2 </option>,
-                                <option value = 3 > 3 </option>, <option value = 4 > 4 </option>, <option value = 5 > 5 </option>' )) %> </br>
-    <%= label_tag :content %>
-    <%= text_field_tag :content %> </br>
-    <%= label_tag :image_url %>
-    <%= text_field_tag :image_url %> </br>
-    <%= submit_tag "Create A New Review" %> </br>
-  <% end %>
+
+<div class='form-style'>
+<legend><h2> Enter the following information: </h2><legend>
+<%= render partial: 'form', locals: {path: "/shelters/#{params[:id]}/reviews",
+method: :post, button_text: 'Create a New Review'}%>
 </div>

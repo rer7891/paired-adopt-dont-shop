@@ -18,8 +18,8 @@
 
 </div></br>
 
-<h2><%= link_to 'Create A New Review', "/shelters/#{@shelter.id}/reviews/new"%></h2>
-<p><center><%=@shelter.name%> has an average review rating of <%=@shelter.review_ave %>%</center></p>
+<%= link_to 'Create A New Review', "/shelters/#{@shelter.id}/reviews/new"%>
+<p class ='center'><%=@shelter.name%> has an average review rating of <%=@shelter.review_ave %>%</center></p>
 
   <% @shelter.reviews.each do |review| %>
     <section id=reviews<%"#{review.id}"%>
