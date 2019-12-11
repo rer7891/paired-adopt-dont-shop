@@ -1,4 +1,7 @@
 <h1>All Applications for <%=@pet.name%></h1>
+<div class='error-div'>
+  <%= render "shared/flash" %>
+</div>
 <%if @applications.empty? == false%>
   <% @applications.each do |app| %>
     <ul>
