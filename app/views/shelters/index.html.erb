@@ -1,4 +1,7 @@
 <h1> Adopt Don't Shop: Shelter List </h1>
+<div class='error-div'>
+  <%= render "shared/flash" %>
+</div>
 <h2> <%= link_to 'Create New Shelter', '/shelters/new', method: :get%></h2>
 <% @shelters.each do |shelter| %>
     <div class='center-div'>

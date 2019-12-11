@@ -12,17 +12,12 @@
   </head>
   <body>
     <nav>
-      <ul>
-        <li><%= link_to "All Pets", "/pets" %></li>
-        <li><%= link_to "All Shelters", "/shelters" %> </li>
-        <li><%= link_to "Favorites: (#{@favorites.favorite_count})", "/favorites" %></li>
+      <ul class='nav-ul'>
+        <li class='nav-li'><%= link_to "All Pets", "/pets" %></li>
+        <li class='nav-li'><%= link_to "All Shelters", "/shelters" %> </li>
+        <li class='nav-li'><%= link_to "Favorites: (#{@favorites.favorite_count})", "/favorites" %></li>
       </ul>
     </nav>
-    <div>
-      <% flash.each do |type, message| %>
-           <p><%= message %></p>
-         <% end %>
-    </div>
     <%= yield %>
   </body>
 </html>

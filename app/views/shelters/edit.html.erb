@@ -1,13 +1,15 @@
 <h1> Edit Shelter Listing </h1>
-<div class='form-style'>
+<div class='error-div'>
+  <%= render "shared/flash" %>
   <% if @shelter.errors.any? %>
-   <p class ='center-div'><%= pluralize(@shelter.errors.count, "error") %> prohibited this shelter from being saved:</p>
+   <p><%= pluralize(@shelter.errors.count, "error") %> prohibited this shelter from being saved:</p>
         <ul>
           <% @shelter.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
           <% end %>
         </ul>
-  <% end %>
+  <% end %></div>
+<div class='form-style'>
 <legend><h2> Edit the following information: </h2><legend>
 <%= render partial: 'form', locals: {path: "/shelters/#{@shelter.id}",
 method: :patch, button_text: 'Submit'}%>
