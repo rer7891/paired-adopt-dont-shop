@@ -1,10 +1,15 @@
 <div class='error-div'>
   <%= render "shared/flash" %>
 </div>
+</br>
+</br>
+<div class='form-style'>
+<legend><h2> Submit the following information: </h2><legend>
+<p> Select which pets to apply for: </p>
 <%= form_tag "/applications" do %>
   <% @pets.each do |pet| %>
-    <%= check_box_tag("#{pet.id}","#{pet.name}") %>
-<%= link_to pet.name, "/pets/#{pet.id}" %> </br>
+    <p><%= check_box_tag("#{pet.id}","#{pet.name}") %>
+<%= link_to pet.name, "/pets/#{pet.id}" %> </p>
   <% end %>
   <%=label_tag 'Name' %>
 <p><%=text_field_tag :name %> </p>
@@ -22,3 +27,4 @@
   <%=text_area_tag :description %> <br />
   <%= submit_tag 'Submit Application' %>
 <%end%>
+</div>
