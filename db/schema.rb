@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191210211556) do
+ActiveRecord::Schema.define(version: 20191211200848) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20191210211556) do
     t.string "sex", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "is_adoptable", default: true, null: false
+    t.boolean "is_adoptable", default: true
     t.integer "shelter_id"
     t.string "description", null: false
     t.boolean "favorite_status", default: false
@@ -54,10 +54,10 @@ ActiveRecord::Schema.define(version: 20191210211556) do
     t.string "title"
     t.integer "rating"
     t.text "content"
-    t.string "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "shelter_id"
+    t.string "image_url", default: "https://naturewatch.org/files/uploads/o-ANIMAL-SHELTER-facebook.jpg"
     t.index ["shelter_id"], name: "index_reviews_on_shelter_id"
   end
 
