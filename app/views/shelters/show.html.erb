@@ -12,7 +12,7 @@ Zip Code: <%= @shelter.zip_code %></p>
 <section>
 <p><%=@shelter.name%> is currently housing <%= @shelter.count_pets %> pets.</br>
 <%=@shelter.name%> has <%=@shelter.application_count%> applications on file.</br>
-<%=@shelter.name%> has an average review rating of <%=@shelter.review_ave %>.</p>
+<%=@shelter.name%> has an average review rating of <%=@shelter.review_ave %>%.</p>
 <p><%= link_to 'Update This Shelter', "/shelters/#{@shelter.id}/edit"%></br>
 <%= link_to 'Delete This Shelter', "/shelters/#{@shelter.id}", method: :delete %></p>
 </section>
