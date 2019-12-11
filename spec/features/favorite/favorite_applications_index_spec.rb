@@ -75,7 +75,7 @@ RSpec.describe "As a visitor", type: :feature do
 
         visit "/favorites"
 
-        within("p#application_approve-#{@dog.id}") do
+        within("p#application_approved-#{@dog.id}") do
           expect(page).to have_content(@dog.name)
         end
       end

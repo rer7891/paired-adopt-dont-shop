@@ -15,7 +15,7 @@ class Shelter < ApplicationRecord
   end
 
   def adoptable_pets?
-    pets.any? {|pet| pet.is_adoptable == false }
+    pets.where(is_adoptable: false).any?
   end
 
   def review_ave
