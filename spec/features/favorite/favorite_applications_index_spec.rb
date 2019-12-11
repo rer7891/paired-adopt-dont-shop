@@ -43,13 +43,21 @@ RSpec.describe "As a visitor", type: :feature do
                                                      zip: "34533",
                                                      phone_number: "43253424324",
                                                      description: "I will be a good dog parent.")
+          @application_2 = @dog.applications.create!(name: "Becky Robran",
+                                                    address: "12342 Main Street",
+                                                    city: "Broomfield",
+                                                    state: "CO",
+                                                    zip: "34533",
+                                                    phone_number: "43253424324",
+                                                    description: "I will be a good dog parent.")
           @application_1.pets << @dog_2
       end
       it "I visit /favorites and see a list of all pets with an application." do
         visit '/favorites'
 
-        expect(page).to_not  have_content(@dog.name)
-
+        within("p#application-#{@dog_1.id}") do
+          expect(page).to_not have_content(@dog.name)
+        end
         within("p#application-#{@dog_1.id}") do
           expect(page).to have_content(@dog_1.name)
         end
@@ -58,6 +66,17 @@ RSpec.describe "As a visitor", type: :feature do
         end
         within("p#application-#{@dog_2.id}") do
           expect(page).to_not have_content(@dog.name)
+        end
+      end
+      it 'will see a list of approved applications' do
+        visit "/applications/#{@application_2.id}"
+
+        click_on("Approve Application for #{@dog.name}")
+
+        visit "/favorites"
+
+        within("p#application_approve-#{@dog.id}") do
+          expect(page).to have_content(@dog.name)
         end
       end
   end
