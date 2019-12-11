@@ -17,4 +17,12 @@ class Shelter < ApplicationRecord
   def adoptable_pets?
     pets.any? {|pet| pet.is_adoptable == false }
   end
+
+  def review_ave
+    reviews.average(:rating)
+  end
+
+  def application_count
+    pets.joins(:applications).count
+  end
 end
