@@ -6,7 +6,7 @@
 <% @shelters.each do |shelter| %>
     <div class='center-div'>
       <h2> <%= link_to shelter.name, "/shelters/#{shelter.id}" %></h2>
-      <%= link_to 'Edit This Shelter', "/shelters/#{shelter.id}/edit", class: 'button-left', method: :get%>
-      <%= link_to 'Delete This Shelter', "/shelters/#{shelter.id}", method: :delete, class: 'button-right' %>
+      <p><%= link_to 'Edit This Shelter', "/shelters/#{shelter.id}/edit", method: :get%></br>
+      <%= link_to 'Delete This Shelter', "/shelters/#{shelter.id}", method: :delete %></p>
     </div>
 <% end %>
