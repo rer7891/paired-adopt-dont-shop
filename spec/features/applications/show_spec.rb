@@ -17,7 +17,7 @@ RSpec.describe "As a visitor ", type: :feature do
                             )
 
       @dog_1 = @shelter_1.pets.create!(image_url: '/',
-                           name: 'Tofu',
+                           name: 'Taffy',
                            description: 'I am a neutered male, white Terrier Mix who loves to play fetch.',
                            approximate_age: 4,
                            sex: 'M',
@@ -51,8 +51,9 @@ RSpec.describe "As a visitor ", type: :feature do
                                                    state: "CO",
                                                    zip: "34533",
                                                    phone_number: "43253424324",
-                                                   description: "I will be a good dog parent.")
-          @application_2.pets << @dog_1
+                                                   description: "I will always play with them.")
+      @application_2.pets << @dog_2
+
     end
 
     it "I can see all application details including all pets" do
@@ -78,15 +79,17 @@ RSpec.describe "As a visitor ", type: :feature do
       expect(page).to have_link("Approve Application for #{@dog_1.name}")
       expect(page).to have_link("Approve Application for #{@dog_2.name}")
 
-      click_on("Approve Application for #{@dog_1.name}")
+      click_link("Approve Application for #{@dog_1.name}")
       expect(current_path).to eql("/pets/#{@dog_1.id}")
 
-
-      expect("#{@dog_1.is_adoptable}").to eql("true")
+      expect(@dog_1.is_adoptable).to eql(false)
       expect(page).to have_content("Status: Adoption Pending")
       expect(page).to have_content("On hold for Becky Robran")
-      expect(page).to_not have_content("Linda Le")
 
+      visit "/pets/#{@dog_2.id}"
+      expect(@dog_2.is_adoptable).to eql(true)
+      expect(page).to have_content("Status: Adoptable")
+      expect(page).to_not have_content("On hold for Becky Robran")
     end
 
     it "cannot see a link to approve an application and see link to unapprove after an application for that pet is approved" do
@@ -109,7 +112,7 @@ RSpec.describe "As a visitor ", type: :feature do
 
       visit "/applications/#{@application_1.id}"
 
-      click_on("Approve Application for #{@dog_1.name}")
+      click_link("Approve Application for #{@dog_1.name}")
 
       visit "/applications/#{@application_1.id}"
 
@@ -121,6 +124,7 @@ RSpec.describe "As a visitor ", type: :feature do
 
       visit "/pets/#{@dog_1.id}"
       expect(page).to have_content("Status: Adoptable")
+      expect(@dog_1.is_adoptable).to eql(true)
       expect(page).to_not have_content("On hold for #{@application_1.name}")
 
     end

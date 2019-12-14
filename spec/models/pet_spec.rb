@@ -22,11 +22,13 @@ describe Pet, type: :model do
     it {should validate_presence_of(:sex).with_message("can't be blank")}
     it {should validate_presence_of(:image_url).with_message("can't be blank")}
 end
-
-
   describe 'relationships' do
     it {should belong_to :shelter}
     it {should have_many :pet_applications}
     it {should have_many(:applications).through(:pet_applications)}
+  end
+
+  describe 'methods' do
+    
   end
 end

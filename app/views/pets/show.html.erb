@@ -2,20 +2,24 @@
 <div class='error-div'>
   <%= render "shared/flash" %>
 </div></br></br>
+
 <div class='center-div'>
   <%= image_tag("#{@pet.image_url}", {:style => "width:300px;"}) %>
 <h2><%= @pet.name %></h2>
   <p>Description: <%= @pet.description %></p>
   <p>Approximate Age: <%= @pet.approximate_age%></p>
   <p>Gender: <%= @pet.sex %></p>
+
 <% if @pet.is_adoptable %>
   <p>Status: Adoptable</p>
 <% else %>
   <p>Status: Adoption Pending</p>
 <% end %>
-<% @pet.applications.each do |app| %>
+
+<% @pet.pet_applications.each do |app| %>
     <% if app.approval_status %>
-  <p>On hold for <%= link_to app.name, "/applications/#{app.id}" %> </p>
+
+  <p>On hold for <%= link_to app.application.name%> </p>
     <% end %>
 <% end %>
 

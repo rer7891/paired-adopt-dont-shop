@@ -10,11 +10,12 @@
       <% if @favorites.include?(pet.id.to_s) %>
         <p <%=pet.id%>> <%= link_to "#{pet.name}", "/pets/#{pet.id}" %> </p>
         <p> <%= image_tag("#{pet.image_url}", {:style => "width:300px;"}) %></p>
-        <p id=delete<%="#{pet.id}"%> > <%= link_to 'Delete All Favorites', "/favorites/#{pet.id}", method: :delete %><br></p>
       <%end%>
       <% end %>
-      <center>
-        <%= link_to "Apply To Adopt Pet(s)", "/applications/new" %>
+
+  <center>
+    <p> <%= link_to 'Delete All Favorites', "/favorites", method: :delete %><br></p>
+    <%= link_to "Apply To Adopt Pet(s)", "/applications/new" %>
   </center> <br />
   <% end %>
 </div>

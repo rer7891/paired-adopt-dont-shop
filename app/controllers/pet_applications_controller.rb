@@ -8,14 +8,15 @@ class PetApplicationsController < ApplicationController
   def update
     pet = Pet.find(params[:id])
     application = Application.find(params[:application_id])
-      if params[:revoke]
+    pet_application = PetApplication.where(pet_id: params[:id], application_id: params[:application_id]).first
+      if pet.is_adoptable
         pet_helper(pet)
-        application_helper(application)
-        redirect_to "/applications/#{application.id}"
-      else pet.is_adoptable
-        pet_helper(pet)
-        application_helper(application)
+        application_helper(pet_application)
         redirect_to "/pets/#{pet.id}"
+      elsif params[:revoke] != nil
+        pet_helper(pet)
+        application_helper(pet_application)
+        redirect_to "/applications/#{application.id}"
       end
   end
 
@@ -28,9 +29,9 @@ class PetApplicationsController < ApplicationController
     params.permit(:approval_status)
   end
 
-  def application_helper(application)
-    params[:approval_status] = application.update_approval_status
-    application.update(app_params)
+  def application_helper(pet_application)
+    params[:approval_status] = pet_application.update_approval_status
+    pet_application.update(app_params)
   end
 
   def pet_helper(pet)

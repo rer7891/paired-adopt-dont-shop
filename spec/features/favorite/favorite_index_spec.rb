@@ -71,12 +71,12 @@ RSpec.describe 'Favorites Index', type: :feature do
 
         visit '/favorites'
 
-        within("#delete#{@dog_1.id}") do
-          click_link "Delete All Favorites"
-          expect(current_path).to eql("/favorites")
-        end
 
-        expect(page).to have_content("Favorites: (1)")
+        click_link "Delete All Favorites"
+        expect(current_path).to eql("/favorites")
+
+
+        expect(page).to have_content("Favorites: (0)")
         expect(page).to_not have_content(@dog_1.name)
     end
 
